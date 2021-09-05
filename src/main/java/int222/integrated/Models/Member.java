@@ -1,18 +1,21 @@
 package int222.integrated.Models;
 
-import java.sql.Date;
-import java.util.Set;
+import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@Entity
+@Table(name = "Member")
 public class Member {
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Userid")
 	private int Userid;
 
@@ -33,4 +36,7 @@ public class Member {
 
 	@Column(name = "Status")
 	private String Status;
+	
+//	@OneToMany(mappedBy = "?????", cascade = CascadeType.ALL, orphanRemoval = true)
+//	Set<Bookmark> bookmark;
 }

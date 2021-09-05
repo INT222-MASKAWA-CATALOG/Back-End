@@ -4,6 +4,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 public class Brand {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Brandid")
 	private int Brandid;
 
@@ -21,4 +24,7 @@ public class Brand {
 
 	@Column(name = "Brandlink")
 	private String Brandlink;
+	
+	@OneToMany(mappedBy = "Brandid", cascade = CascadeType.ALL, orphanRemoval = true)
+	Set<Product> product;
 }

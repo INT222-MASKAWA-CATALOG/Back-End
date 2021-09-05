@@ -1,20 +1,19 @@
 package int222.integrated.Models;
 
-import java.sql.Date;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Product")
 public class Product {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Productid")
 	private int Productid;
 
@@ -30,7 +29,22 @@ public class Product {
 	@Column(name = "Description")
 	private String Description;
 
-	@Column(name = "Description")
+	@Column(name = "Productlink")
 	private String Productlink;
+	
+	@Column(name = "Brandid")
+	private String Brandid;
+	
+	@ManyToOne
+    @JoinColumn(name = "Brandid", insertable = false, updatable = false)
+	Brand brand;
+
+//	@ManyToOne
+//    @JoinColumn(name = "Userid", insertable = false, updatable = false)
+//	Bookmark bookmark;
+	
+//	@ManyToOne
+//    @JoinColumn(name = "Productid", insertable = false, updatable = false)
+//	Bookmark bookmark;
 
 }
