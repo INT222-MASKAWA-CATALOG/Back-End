@@ -1,50 +1,58 @@
 package int222.integrated.Models;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Productid")
+	@Column(name = "productid")
 	private int Productid;
 
-	@Column(name = "Productname")
+	@Column(name = "productname")
 	private String Productname;
 
-	@Column(name = "Price")
+	@Column(name = "price")
 	private int Price;
 
-	@Column(name = "Saledate")
+	@Column(name = "saledate")
 	private java.sql.Date Saledate;
 
-	@Column(name = "Description")
+	@Column(name = "description")
 	private String Description;
 
-	@Column(name = "Productlink")
+	@Column(name = "productlink")
 	private String Productlink;
 	
-	@Column(name = "Brandid")
+	@Column(name = "brandid")
 	private String Brandid;
 	
 	@ManyToOne
-    @JoinColumn(name = "Brandid", insertable = false, updatable = false)
+    @JoinColumn(name = "brandid", insertable = false, updatable = false)
 	Brand brand;
-
-//	@ManyToOne
-//    @JoinColumn(name = "Userid", insertable = false, updatable = false)
-//	Bookmark bookmark;
 	
-//	@ManyToOne
-//    @JoinColumn(name = "Productid", insertable = false, updatable = false)
-//	Bookmark bookmark;
+	@OneToMany(mappedBy = "productid", cascade = CascadeType.ALL, orphanRemoval = true)
+	Set<Productcolor> productcolor;
+	
+	@OneToMany
+	@JoinColumns( {
+	    @JoinColumn(name="userid", referencedColumnName="userid"),
+	    @JoinColumn(name="productid", referencedColumnName="productid")
+	} )
+	private Bookmark bookmark;
+
 
 }

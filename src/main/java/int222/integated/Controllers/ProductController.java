@@ -1,5 +1,21 @@
 package int222.integated.Controllers;
 
-public class ProductController {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import int222.integrated.Models.Product;
+import int222.integrated.Repositories.ProductJpaRepository;
+
+@RestController
+public class ProductController {
+	@Autowired
+	private ProductJpaRepository productJpa;
+	
+	@GetMapping("/products")
+	public List<Product> showAllProducts() {
+		return productJpa.findAll();
+	}
 }

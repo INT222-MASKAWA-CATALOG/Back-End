@@ -11,20 +11,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Brand")
+@Table(name = "brand")
 public class Brand {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Brandid")
+	@Column(name = "brandid")
 	private int Brandid;
 
-	@Column(name = "Brandname")
+	@Column(name = "brandname")
 	private String Brandname;
 
-	@Column(name = "Brandlink")
+	@Column(name = "brandlink")
 	private String Brandlink;
 	
-	@OneToMany(mappedBy = "Brandid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "brandid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 }

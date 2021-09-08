@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import int222.integrated.Models.Member;
-import int222.integrated.Repositories.MemberJpaRepository;
+import int222.integrated.Models.Size;
+import int222.integrated.Repositories.SizeJpaRepository;
 
 @RestController
-public class MemberController {
+public class SizeController {
 	@Autowired
-	private MemberJpaRepository MemberJpa;
+	private SizeJpaRepository SizeJpa;
 	
-	@GetMapping("/member")
-	public List<Member> showAllMembers() {
-		return MemberJpa.findAll();
+	@GetMapping("/size")
+	public List<Size> showAllSizes() {
+		return SizeJpa.findAll();
 	}
 }

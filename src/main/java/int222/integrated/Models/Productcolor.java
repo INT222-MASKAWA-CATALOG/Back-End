@@ -10,27 +10,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Productcolor")
+@Table(name = "productcolor")
 public class Productcolor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Productcolorid")
+	@Column(name = "productcolorid")
 	private int Productcolorid;
 
-	@Column(name = "Productid")
+	@Column(name = "Pproductid")
 	private int Productid;
 
-	@Column(name = "Colorid")
+	@Column(name = "colorid")
 	private int Colorid;
 
-	@Column(name = "Imagepath")
+	@Column(name = "imagepath")
 	private String Imagepath;
 	
 	@ManyToOne
-    @JoinColumn(name = "Colorid", insertable = false, updatable = false)
+    @JoinColumn(name = "colorid", insertable = false, updatable = false)
     Color color;
 
 	@ManyToOne
-    @JoinColumn(name = "Productid", insertable = false, updatable = false)
+    @JoinColumn(name = "productid", insertable = false, updatable = false)
     Product product;
 }

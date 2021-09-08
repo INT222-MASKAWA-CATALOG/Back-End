@@ -11,21 +11,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Color")
+@Table(name = "color")
 public class Color {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Colorid")
+	@Column(name = "colorid")
 	private int Colorid;
 	
-	@Column(name = "Hexcode")
+	@Column(name = "hexcode")
 	private String Hexcode;
 
-	@Column(name = "Colorname")
+	@Column(name = "colorname")
 	private String Colorname;
 	
-	@OneToMany(mappedBy = "Colorid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "colorid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Productcolor> productcolors;
 
 	

@@ -8,22 +8,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Bookmark")
+@Table(name = "bookmark")
 public class Bookmark {
 	
 	@Id
 //	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Userid")
+	@Column(name = "userid")
 	private int Userid;
 	
-	@Column(name = "Productid")
+	@Column(name = "productid")
 	private int Productid;
 	
 	@ManyToOne
-    @JoinColumn(name = "Userid", insertable = false, updatable = false)
+    @JoinColumn(name = "userid", insertable = false, updatable = false)
 	Member member;
 	
 	@ManyToOne
-    @JoinColumn(name = "Productid", insertable = false, updatable = false)
+    @JoinColumn(name = "productid", insertable = false, updatable = false)
 	Product product;
+	
+	
 }
