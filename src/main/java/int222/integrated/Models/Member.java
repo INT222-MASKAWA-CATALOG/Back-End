@@ -38,8 +38,68 @@ public class Member {
 	@Column(name = "status")
 	private String Status;
 	
-	@OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "Userid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Record> record;
+
+	public int getUserid() {
+		return Userid;
+	}
+
+	public void setUserid(int userid) {
+		Userid = userid;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
+
+	public String getUsername() {
+		return Username;
+	}
+
+	public void setUsername(String username) {
+		Username = username;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	public String getPhonenumber() {
+		return Phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		Phonenumber = phonenumber;
+	}
+
+	public String getGender() {
+		return Gender;
+	}
+
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
+
+	
+	
 
 
 }

@@ -25,8 +25,35 @@ public class Color {
 	@Column(name = "colorname")
 	private String Colorname;
 	
-	@OneToMany(mappedBy = "colorid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "Colorid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
+
+	public int getColorid() {
+		return Colorid;
+	}
+
+	public void setColorid(int colorid) {
+		Colorid = colorid;
+	}
+
+	public String getHexcode() {
+		return Hexcode;
+	}
+
+	public void setHexcode(String hexcode) {
+		Hexcode = hexcode;
+	}
+
+	public String getColorname() {
+		return Colorname;
+	}
+
+	public void setColorname(String colorname) {
+		Colorname = colorname;
+	}
+
+
+	
 
 	
 

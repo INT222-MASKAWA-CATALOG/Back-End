@@ -25,7 +25,33 @@ public class Brand {
 	@Column(name = "brandlink")
 	private String Brandlink;
 	
-	@OneToMany(mappedBy = "brandid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "Brandid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
+
+	public int getBrandid() {
+		return Brandid;
+	}
+
+	public void setBrandid(int brandid) {
+		Brandid = brandid;
+	}
+
+	public String getBrandname() {
+		return Brandname;
+	}
+
+	public void setBrandname(String brandname) {
+		Brandname = brandname;
+	}
+
+	public String getBrandlink() {
+		return Brandlink;
+	}
+
+	public void setBrandlink(String brandlink) {
+		Brandlink = brandlink;
+	}
+
+	
 	
 }

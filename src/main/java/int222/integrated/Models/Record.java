@@ -25,12 +25,52 @@ public class Record {
 	private int Productid;
 	
 	@ManyToOne
-    @JoinColumn(name = "userid", insertable = false, updatable = false)
+    @JoinColumn(name = "Userid", insertable = false, updatable = false)
 	Member member;
 	
 	@ManyToOne
-    @JoinColumn(name = "productid", insertable = false, updatable = false)
+    @JoinColumn(name = "Productid", insertable = false, updatable = false)
 	Product product;
+
+	public int getRecordid() {
+		return Recordid;
+	}
+
+	public void setRecordid(int recordid) {
+		Recordid = recordid;
+	}
+
+	public int getUserid() {
+		return Userid;
+	}
+
+	public void setUserid(int userid) {
+		Userid = userid;
+	}
+
+	public int getProductid() {
+		return Productid;
+	}
+
+	public void setProductid(int productid) {
+		Productid = productid;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	
 	
 }

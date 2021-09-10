@@ -27,6 +27,48 @@ public class Onlineshop {
 	private String Productlink;
 	
 	@ManyToOne
-    @JoinColumn(name = "productid", insertable = false, updatable = false)
+    @JoinColumn(name = "Productid", insertable = false, updatable = false)
 	Product product;
+
+	public int getShopid() {
+		return Shopid;
+	}
+
+	public void setShopid(int shopid) {
+		Shopid = shopid;
+	}
+
+	public int getBrandid() {
+		return Brandid;
+	}
+
+	public void setBrandid(int brandid) {
+		Brandid = brandid;
+	}
+
+	public Float getPrice() {
+		return Price;
+	}
+
+	public void setPrice(Float price) {
+		Price = price;
+	}
+
+	public String getProductlink() {
+		return Productlink;
+	}
+
+	public void setProductlink(String productlink) {
+		Productlink = productlink;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
+	
 }

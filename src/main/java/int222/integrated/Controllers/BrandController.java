@@ -14,6 +14,11 @@ public class BrandController {
 	@Autowired
 	private BrandJpaRepository brandJpa;
 	
+	@GetMapping("/kmutt")
+	public String home() {
+		return "KMUTT";
+	}
+	
 	@GetMapping("/brand")
 	public List<Brand> showAllBrands() {
 		return brandJpa.findAll();
