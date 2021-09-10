@@ -1,12 +1,13 @@
 package int222.integrated.Models;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,16 +35,11 @@ public class Member {
 	@Column(name = "gender")
 	private String Gender;
 	
-	@Column(name = "type")
-	private String Type;
-
 	@Column(name = "status")
 	private String Status;
 	
-	@OneToMany
-	@JoinColumns( {
-	    @JoinColumn(name="userid", referencedColumnName="userid",insertable = false, updatable = false),
-	    @JoinColumn(name="productid", referencedColumnName="productid",insertable = false, updatable = false)
-	} )
-	private Bookmark bookmark;
+	@OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
+	Set<Record> record;
+
+
 }

@@ -14,7 +14,7 @@ public class ProductController {
 	@Autowired
 	private ProductJpaRepository productJpa;
 	
-	@GetMapping("/products")
+	@GetMapping("/product")
 	public List<Product> showAllProducts() {
 		return productJpa.findAll();
 	}

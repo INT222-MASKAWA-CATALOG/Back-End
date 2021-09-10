@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,34 +24,35 @@ public class Product {
 	@Column(name = "productname")
 	private String Productname;
 
-	@Column(name = "price")
-	private int Price;
-
 	@Column(name = "saledate")
 	private java.sql.Date Saledate;
-
+	
 	@Column(name = "description")
 	private String Description;
 
-	@Column(name = "productlink")
-	private String Productlink;
+	@Column(name = "image")
+	private String Image;
 	
 	@Column(name = "brandid")
-	private String Brandid;
+	private int Brandid;
+	
+	@Column(name = "colorid")
+	private int Colorid;
+	
 	
 	@ManyToOne
     @JoinColumn(name = "brandid", insertable = false, updatable = false)
 	Brand brand;
+
+	@ManyToOne
+    @JoinColumn(name = "colorid", insertable = false, updatable = false)
+	Color color;
 	
-	@OneToMany(mappedBy = "productid", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Productcolor> productcolor;
-	
-	@OneToMany
-	@JoinColumns( {
-	    @JoinColumn(name="userid", referencedColumnName="userid"),
-	    @JoinColumn(name="productid", referencedColumnName="productid")
-	} )
-	private Bookmark bookmark;
+	@OneToMany(mappedBy = "shopid", cascade = CascadeType.ALL, orphanRemoval = true)
+	Set<Onlineshop> onlineshop;
+
+	@OneToMany(mappedBy = "recordid", cascade = CascadeType.ALL, orphanRemoval = true)
+	Set<Record> record;
 
 
 }

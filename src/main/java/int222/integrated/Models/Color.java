@@ -26,7 +26,7 @@ public class Color {
 	private String Colorname;
 	
 	@OneToMany(mappedBy = "colorid", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Productcolor> productcolors;
+	Set<Product> product;
 
 	
 

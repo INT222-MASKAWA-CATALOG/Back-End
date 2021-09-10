@@ -27,4 +27,5 @@ public class Brand {
 	
 	@OneToMany(mappedBy = "brandid", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
+	
 }

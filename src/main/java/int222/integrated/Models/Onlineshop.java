@@ -10,27 +10,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "productcolor")
-public class Productcolor {
+@Table(name = "onlineshop")
+public class Onlineshop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "productcolorid")
-	private int Productcolorid;
-
-	@Column(name = "Pproductid")
-	private int Productid;
-
-	@Column(name = "colorid")
-	private int Colorid;
-
-	@Column(name = "imagepath")
-	private String Imagepath;
+	@Column(name = "shopid")
+	private int Shopid;
+	
+	@Column(name = "brandid")
+	private int Brandid;
+	
+	@Column(name = "price")
+	private Float Price;
+	
+	@Column(name = "productlink")
+	private String Productlink;
 	
 	@ManyToOne
-    @JoinColumn(name = "colorid", insertable = false, updatable = false)
-    Color color;
-
-	@ManyToOne
     @JoinColumn(name = "productid", insertable = false, updatable = false)
-    Product product;
+	Product product;
 }
