@@ -1,4 +1,4 @@
-package int222.integrated.Maskawa.Catalog;
+package int222.integrated;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

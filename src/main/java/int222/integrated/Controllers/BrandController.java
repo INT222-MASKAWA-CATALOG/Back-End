@@ -1,4 +1,4 @@
-package int222.integated.Controllers;
+package int222.integrated.Controllers;
 
 import java.util.List;
 
