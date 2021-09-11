@@ -41,17 +41,17 @@ public class Product {
 	
 	
 	@ManyToOne
-    @JoinColumn(name = "Brandid", insertable = false, updatable = false)
+    @JoinColumn(name = "brandid", insertable = false, updatable = false)
 	Brand brand;
 
 	@ManyToOne
-    @JoinColumn(name = "Colorid", insertable = false, updatable = false)
+    @JoinColumn(name = "colorid", insertable = false, updatable = false)
 	Color color;
 	
-	@OneToMany(mappedBy = "Shopid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Onlineshop> onlineshop;
 
-	@OneToMany(mappedBy = "Recordid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Record> record;
 	
 

@@ -17,8 +17,8 @@ public class Onlineshop {
 	@Column(name = "shopid")
 	private int Shopid;
 	
-	@Column(name = "brandid")
-	private int Brandid;
+	@Column(name = "productid")
+	private int Productid;
 	
 	@Column(name = "price")
 	private Float Price;
@@ -27,7 +27,7 @@ public class Onlineshop {
 	private String Productlink;
 	
 	@ManyToOne
-    @JoinColumn(name = "Productid", insertable = false, updatable = false)
+    @JoinColumn(name = "productid", insertable = false, updatable = false)
 	Product product;
 
 	public int getShopid() {
@@ -38,12 +38,12 @@ public class Onlineshop {
 		Shopid = shopid;
 	}
 
-	public int getBrandid() {
-		return Brandid;
+	public int getProductid() {
+		return Productid;
 	}
 
-	public void setBrandid(int brandid) {
-		Brandid = brandid;
+	public void setProductid(int productid) {
+		Productid = productid;
 	}
 
 	public Float getPrice() {
@@ -62,13 +62,5 @@ public class Onlineshop {
 		Productlink = productlink;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
 	
 }

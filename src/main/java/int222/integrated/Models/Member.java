@@ -29,8 +29,8 @@ public class Member {
 	@Column(name = "email")
 	private String Email;
 
-	@Column(name = "phonenumber")
-	private String Phonenumber;
+	@Column(name = "phonnumber")
+	private String phonnumber;
 
 	@Column(name = "gender")
 	private String Gender;
@@ -38,7 +38,7 @@ public class Member {
 	@Column(name = "status")
 	private String Status;
 	
-	@OneToMany(mappedBy = "Userid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Record> record;
 
 	public int getUserid() {
@@ -73,12 +73,12 @@ public class Member {
 		Email = email;
 	}
 
-	public String getPhonenumber() {
-		return Phonenumber;
+	public String getPhonnumber() {
+		return phonnumber;
 	}
 
-	public void setPhonenumber(String phonenumber) {
-		Phonenumber = phonenumber;
+	public void setPhonnumber(String phonnumber) {
+		this.phonnumber = phonnumber;
 	}
 
 	public String getGender() {
@@ -97,9 +97,5 @@ public class Member {
 		Status = status;
 	}
 
-
 	
-	
-
-
 }

@@ -25,7 +25,7 @@ public class Color {
 	@Column(name = "colorname")
 	private String Colorname;
 	
-	@OneToMany(mappedBy = "Colorid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 
 	public int getColorid() {

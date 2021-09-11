@@ -25,7 +25,7 @@ public class Brand {
 	@Column(name = "brandlink")
 	private String Brandlink;
 	
-	@OneToMany(mappedBy = "Brandid", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 
 	public int getBrandid() {
