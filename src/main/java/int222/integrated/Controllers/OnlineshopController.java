@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import int222.integrated.Models.Onlineshop;
-import int222.integrated.Repositories.ShopJpaRepository;
+import int222.integrated.Repositories.OnlineShopJpaRepository;
 
 
 @RestController
 public class OnlineshopController {
 	@Autowired
-	private ShopJpaRepository shopJpa;
+	private OnlineShopJpaRepository onlineShopJpa;
 	
 	@GetMapping("/onlineshop")
 	public List<Onlineshop> showAllOnlineshops() {
-		return shopJpa.findAll();
+		return onlineShopJpa.findAll();
 	}
 }

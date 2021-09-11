@@ -18,12 +18,12 @@ public class Color {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "colorid")
 	private int Colorid;
-	
-	@Column(name = "hexcode")
-	private String Hexcode;
 
 	@Column(name = "colorname")
 	private String Colorname;
+	
+	@Column(name = "hexcode")
+	private String Hexcode;
 	
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;

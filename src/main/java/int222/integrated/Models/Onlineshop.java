@@ -14,8 +14,8 @@ import javax.persistence.Table;
 public class Onlineshop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "shopid")
-	private int Shopid;
+	@Column(name = "onlineid")
+	private int Onlineid;
 	
 	@Column(name = "productid")
 	private int Productid;
@@ -26,16 +26,23 @@ public class Onlineshop {
 	@Column(name = "productlink")
 	private String Productlink;
 	
-	@ManyToOne
+	@Column(name = "shopid")
+	private String Shopid;
+	
+	@ManyToOne //เชื่อมถูกแล้ว
     @JoinColumn(name = "productid", insertable = false, updatable = false)
 	Product product;
+	
+	@ManyToOne //เชื่อมถูกแล้ว
+    @JoinColumn(name = "shopid", insertable = false, updatable = false)
+	Shop shop;
 
-	public int getShopid() {
-		return Shopid;
+	public int getOnlineid() {
+		return Onlineid;
 	}
 
-	public void setShopid(int shopid) {
-		Shopid = shopid;
+	public void setOnlineid(int onlineid) {
+		Onlineid = onlineid;
 	}
 
 	public int getProductid() {
@@ -62,5 +69,16 @@ public class Onlineshop {
 		Productlink = productlink;
 	}
 
+	public String getShopid() {
+		return Shopid;
+	}
+
+	public void setShopid(String shopid) {
+		Shopid = shopid;
+	}
+	
+	
+
+	
 	
 }

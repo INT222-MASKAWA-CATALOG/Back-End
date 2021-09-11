@@ -29,8 +29,8 @@ public class Member {
 	@Column(name = "email")
 	private String Email;
 
-	@Column(name = "phonnumber")
-	private String phonnumber;
+	@Column(name = "phone")
+	private String phone;
 
 	@Column(name = "gender")
 	private String Gender;
@@ -73,12 +73,12 @@ public class Member {
 		Email = email;
 	}
 
-	public String getPhonnumber() {
-		return phonnumber;
+	public String getPhon() {
+		return phone;
 	}
 
-	public void setPhonnumber(String phonnumber) {
-		this.phonnumber = phonnumber;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getGender() {
