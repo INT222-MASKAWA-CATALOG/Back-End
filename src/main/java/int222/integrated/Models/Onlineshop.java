@@ -45,9 +45,9 @@ public class Onlineshop {
 		Onlineid = onlineid;
 	}
 
-	public int getProductid() {
-		return Productid;
-	}
+//	public int getProductid() {
+//		return Productid;
+//	}
 
 	public void setProductid(int productid) {
 		Productid = productid;
@@ -69,16 +69,21 @@ public class Onlineshop {
 		Productlink = productlink;
 	}
 
-	public String getShopid() {
-		return Shopid;
-	}
+//	public String getShopid() {
+//		return Shopid;
+//	}
 
 	public void setShopid(String shopid) {
 		Shopid = shopid;
 	}
-	
-	
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
 	
-	
+		
 }

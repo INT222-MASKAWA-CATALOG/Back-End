@@ -95,16 +95,8 @@ public class Product {
 		Image = image;
 	}
 
-	public int getBrandid() {
-		return Brandid;
-	}
-
 	public void setBrandid(int brandid) {
 		Brandid = brandid;
-	}
-
-	public int getColorid() {
-		return Colorid;
 	}
 
 	public void setColorid(int colorid) {
@@ -115,22 +107,8 @@ public class Product {
 		return brand;
 	}
 
-	public void setBrand(Brand brand) {
-		this.brand = brand;
-	}
-
 	public Color getColor() {
 		return color;
 	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
-
-
-	
-	
-
 
 }
