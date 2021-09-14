@@ -12,10 +12,10 @@ import int222.integrated.Repositories.ShopJpaRepository;
 @RestController
 public class ShopController {
 	@Autowired
-	private ShopJpaRepository ShopJpa;
+	private ShopJpaRepository shopJpa;
 	
 	@GetMapping("/shop")
 	public List<Shop> showAllShops() {
-		return ShopJpa.findAll();
+		return shopJpa.findAll();
 	}
 }
