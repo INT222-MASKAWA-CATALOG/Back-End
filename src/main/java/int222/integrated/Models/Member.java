@@ -14,9 +14,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "member")
 public class Member {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userid")
 	private int Userid;
 
@@ -34,10 +34,10 @@ public class Member {
 
 	@Column(name = "gender")
 	private String Gender;
-	
+
 	@Column(name = "status")
 	private String Status;
-	
+
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Record> record;
 
@@ -97,5 +97,4 @@ public class Member {
 		Status = status;
 	}
 
-	
 }

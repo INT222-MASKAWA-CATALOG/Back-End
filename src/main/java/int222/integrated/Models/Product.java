@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+ 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productid")
 	private int Productid;
 
@@ -74,7 +74,7 @@ public class Product {
 	public java.sql.Date getSaledate() {
 		return Saledate;
 	}
-
+	
 	public void setSaledate(java.sql.Date saledate) {
 		Saledate = saledate;
 	}

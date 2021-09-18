@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "onlineshop")
 public class Onlineshop {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+ 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "onlineid")
 	private int Onlineid;
 	
@@ -30,7 +30,7 @@ public class Onlineshop {
 	private String Shopid;
 	
 	@ManyToOne //เชื่อมถูกแล้ว
-    @JoinColumn(name = "productid", insertable = false, updatable = false)
+    @JoinColumn(name = "productid", insertable = false , updatable = false)
 	Product product;
 	
 	@ManyToOne //เชื่อมถูกแล้ว
@@ -44,10 +44,6 @@ public class Onlineshop {
 	public void setOnlineid(int onlineid) {
 		Onlineid = onlineid;
 	}
-
-//	public int getProductid() {
-//		return Productid;
-//	}
 
 	public void setProductid(int productid) {
 		Productid = productid;

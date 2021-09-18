@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Color {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "colorid")
 	private int Colorid;
 
