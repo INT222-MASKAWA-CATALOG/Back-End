@@ -46,7 +46,7 @@ public class Member {
 	}
 
 	public void setUserid(int userid) {
-		Userid = userid;
+		this.Userid = userid;
 	}
 
 	public String getPassword() {
@@ -54,7 +54,7 @@ public class Member {
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.Password = password;
 	}
 
 	public String getUsername() {
@@ -62,7 +62,7 @@ public class Member {
 	}
 
 	public void setUsername(String username) {
-		Username = username;
+		this.Username = username;
 	}
 
 	public String getEmail() {
@@ -70,7 +70,7 @@ public class Member {
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.Email = email;
 	}
 
 	public String getPhon() {
@@ -86,7 +86,7 @@ public class Member {
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.Gender = gender;
 	}
 
 	public String getStatus() {
@@ -94,7 +94,7 @@ public class Member {
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.Status = status;
 	}
 
 }
