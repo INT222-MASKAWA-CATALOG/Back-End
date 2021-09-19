@@ -33,7 +33,7 @@ public class Brand {
 	}
 
 	public void setBrandid(int brandid) {
-		Brandid = brandid;
+		this.Brandid = brandid;
 	}
 
 	public String getBrandname() {
@@ -41,7 +41,7 @@ public class Brand {
 	}
 
 	public void setBrandname(String brandname) {
-		Brandname = brandname;
+		this.Brandname = brandname;
 	}
 
 	public String getBrandlink() {
@@ -49,7 +49,7 @@ public class Brand {
 	}
 
 	public void setBrandlink(String brandlink) {
-		Brandlink = brandlink;
+		this.Brandlink = brandlink;
 	}
 
 	

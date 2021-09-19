@@ -26,10 +26,6 @@ public class OnlineshopController {
 	@GetMapping("/onlineshop/{onlineid}")
 	public Onlineshop showOnlineshops(@PathVariable int onlineid) {
 		Onlineshop onlineshop = this.onlineShopJpa.findById(onlineid).orElse(null);
-//		if (onlineshop == null) {
-//			throw new OnlineshopException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
-//					"Can not Find this OnlineshopException Because Online Id : " + onlineid + " does not exist.");
-//		}
 		return onlineshop;
 	}
 }

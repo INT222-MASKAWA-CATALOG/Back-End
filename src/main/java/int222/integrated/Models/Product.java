@@ -60,7 +60,7 @@ public class Product {
 	}
 
 	public void setProductid(int productid) {
-		Productid = productid;
+		this.Productid = productid;
 	}
 
 	public String getProductname() {
@@ -68,7 +68,7 @@ public class Product {
 	}
 
 	public void setProductname(String productname) {
-		Productname = productname;
+		this.Productname = productname;
 	}
 
 	public java.sql.Date getSaledate() {
@@ -76,7 +76,7 @@ public class Product {
 	}
 	
 	public void setSaledate(java.sql.Date saledate) {
-		Saledate = saledate;
+		this.Saledate = saledate;
 	}
 
 	public String getDescription() {
@@ -84,7 +84,7 @@ public class Product {
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.Description = description;
 	}
 
 	public String getImage() {
@@ -92,15 +92,15 @@ public class Product {
 	}
 
 	public void setImage(String image) {
-		Image = image;
+		this.Image = image;
 	}
 
 	public void setBrandid(int brandid) {
-		Brandid = brandid;
+		this.Brandid = brandid;
 	}
 
 	public void setColorid(int colorid) {
-		Colorid = colorid;
+		this.Colorid = colorid;
 	}
 
 	public Brand getBrand() {
