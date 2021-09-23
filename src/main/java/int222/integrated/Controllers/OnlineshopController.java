@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import int222.integrated.Models.Onlineshop;
 import int222.integrated.Repositories.OnlineShopJpaRepository;
 
-
 @RestController
 public class OnlineshopController {
 	@Autowired
 	private OnlineShopJpaRepository onlineShopJpa;
-	
+
 	@GetMapping("/onlineshop")
 	public List<Onlineshop> showAllOnlineshops() {
 		return onlineShopJpa.findAll();
 	}
-	
+
 	@GetMapping("/onlineshop/{onlineid}")
 	public Onlineshop showOnlineshops(@PathVariable int onlineid) {
 		Onlineshop onlineshop = this.onlineShopJpa.findById(onlineid).orElse(null);
