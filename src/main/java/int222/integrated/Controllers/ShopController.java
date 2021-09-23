@@ -12,8 +12,6 @@ import int222.integrated.Repositories.ShopJpaRepository;
 public class ShopController {
 	@Autowired
 	private ShopJpaRepository shopJpa;
-	
-	
 
 	@GetMapping("/shop")
 	public List<Shop> showAllShops() {
