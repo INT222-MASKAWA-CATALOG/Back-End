@@ -38,7 +38,7 @@ public class Product {
 	
 	@Column(name = "colorid")
 	private int Colorid;
-	
+		
 	
 	@ManyToOne
     @JoinColumn(name = "brandid", insertable = false, updatable = false)
@@ -111,8 +111,13 @@ public class Product {
 		return brand.getBrandname();
 	}
 
-	public Color getColor() {
-		return color;
+	public String getColorname() {
+		return color.getColorname();
+	}
+	
+	public Set<Onlineshop> getOnlineshop() {
+		return onlineshop;
+		
 	}
 
 }

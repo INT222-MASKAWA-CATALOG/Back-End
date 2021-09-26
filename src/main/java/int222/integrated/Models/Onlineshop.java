@@ -64,14 +64,18 @@ public class Onlineshop {
 	public void setProductlink(String productlink) {
 		Productlink = productlink;
 	}
-
-	public int getProductid() {
-		return product.getProductid();
+	
+	public String getShopname() {
+		return shop.getShopname();
+	}
+	
+	public String getLogo() {
+		return shop.getLogo();
 	}
 
-	public Shop getShop() {
-		return shop;
-	}
+//	public Shop getShop() {
+//		return shop;
+//	}
 	
 		
 }
