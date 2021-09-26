@@ -65,16 +65,8 @@ public class Onlineshop {
 		Productlink = productlink;
 	}
 
-//	public String getShopid() {
-//		return Shopid;
-//	}
-
-	public void setShopid(String shopid) {
-		Shopid = shopid;
-	}
-
-	public Product getProduct() {
-		return product;
+	public int getProductid() {
+		return product.getProductid();
 	}
 
 	public Shop getShop() {

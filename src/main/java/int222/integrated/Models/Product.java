@@ -103,8 +103,12 @@ public class Product {
 		this.Colorid = colorid;
 	}
 
-	public Brand getBrand() {
-		return brand;
+//	public Brand getBrand() {
+//		return brand;
+//	}
+	
+	public String getBrandname() {
+		return brand.getBrandname();
 	}
 
 	public Color getColor() {
