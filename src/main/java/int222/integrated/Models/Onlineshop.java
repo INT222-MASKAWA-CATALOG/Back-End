@@ -36,33 +36,18 @@ public class Onlineshop {
 	@ManyToOne //เชื่อมถูกแล้ว
     @JoinColumn(name = "shopid", insertable = false, updatable = false)
 	Shop shop;
-
+	
+//	Getter
 	public int getOnlineid() {
 		return Onlineid;
-	}
-
-	public void setOnlineid(int onlineid) {
-		Onlineid = onlineid;
-	}
-
-	public void setProductid(int productid) {
-		Productid = productid;
 	}
 
 	public Float getPrice() {
 		return Price;
 	}
 
-	public void setPrice(Float price) {
-		Price = price;
-	}
-
 	public String getProductlink() {
 		return Productlink;
-	}
-
-	public void setProductlink(String productlink) {
-		Productlink = productlink;
 	}
 	
 	public String getShopname() {
@@ -72,10 +57,29 @@ public class Onlineshop {
 	public String getLogo() {
 		return shop.getLogo();
 	}
+	
+//	Setter
+	public void setOnlineid(int onlineid) {
+		Onlineid = onlineid;
+	}
 
-//	public Shop getShop() {
-//		return shop;
-//	}
+	public void setProductid(int productid) {
+		Productid = productid;
+	}
+
+	public void setPrice(Float price) {
+		Price = price;
+	}
+
+	public void setProductlink(String productlink) {
+		Productlink = productlink;
+	}
+
+	public void setShopid(String shopid) {
+		Shopid = shopid;
+	}
+
+	
 	
 		
 }

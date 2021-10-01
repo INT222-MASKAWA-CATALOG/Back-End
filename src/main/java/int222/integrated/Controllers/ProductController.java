@@ -31,6 +31,11 @@ public class ProductController {
 		Product product = this.productJpa.findById(productid).orElse(null);
 		return product;
 	}
+	
+	@PostMapping(value = "/addProduct")
+	public Product create(@RequestBody Product newProduct) {
+		return productJpa.save(newProduct);
+	}
 
 	// ยังไม่ได้ทำ throw Exception
 	@DeleteMapping("/product/{productid}")
@@ -38,11 +43,6 @@ public class ProductController {
 		productJpa.findById(productid).orElse(null);
 		productJpa.deleteById(productid);
 		return "Delete Product Success";
-	}
-
-	@PostMapping(value = "/addProduct")
-	public Product create(@RequestBody Product newProduct) {
-		return productJpa.save(newProduct);
 	}
 
 	@PutMapping("/updateProduct/{productid}")
