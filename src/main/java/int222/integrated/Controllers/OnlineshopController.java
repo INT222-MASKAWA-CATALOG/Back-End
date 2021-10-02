@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 //import int222.integrated.Exception.ExceptionResponse;
 //import int222.integrated.Exception.OnlineshopException;
 import int222.integrated.Models.Onlineshop;
-import int222.integrated.Models.Product;
 import int222.integrated.Repositories.OnlineShopJpaRepository;
 
 @CrossOrigin
