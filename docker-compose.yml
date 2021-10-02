@@ -3,6 +3,7 @@ services:
   backend:
     build: .
     image: backend
+    container_name: backend
     ports:
       - "3000:3000"
     environment:
@@ -11,3 +12,9 @@ services:
       - MYSQL_ROOT_PASSWORD=int222backend
     volumes:
       - /home/Maskawa/Back-End/public:/tmp
+    networks:
+      - intregrated-network
+
+networks:
+  intregrated-network:
+    external: true
