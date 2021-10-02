@@ -1,14 +1,13 @@
 version: "3"
 services:
   backend:
-    container_name: backend
     build: .
     image: backend
+    ports:
+      - "3000:3000"
     environment:
       - MYSQL_DATABASE=maskawa
       - MYSQL_USER=backend
       - MYSQL_ROOT_PASSWORD=int222backend
     volumes:
       - /home/Maskawa/Back-End/public:/tmp
-    ports:
-      - "3000:3000"
