@@ -1,7 +1,6 @@
 version: "3"
 services:
   backend:
-    container_name: backend-con
     build: .
     image: backend
     environment:
