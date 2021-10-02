@@ -1,5 +1,5 @@
 FROM maven:3.8.1-jdk-11-slim AS build
-COPY src /Back-End/src
+COPY src /Back-End/src/
 COPY pom.xml /Back-End
 WORKDIR /Back-End 
 RUN mvn clean package
