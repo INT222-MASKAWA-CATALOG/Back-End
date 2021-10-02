@@ -9,7 +9,7 @@ services:
       - MYSQL_USER=backend
       - MYSQL_ROOT_PASSWORD=int222backend
     volumes:
-      - ~/backend_data:/public/product-img
+      - /home/Maskawa/Back-End/public:/tmp
     networks:
       intregrated-network:
         ipv4_address: 172.18.0.1
