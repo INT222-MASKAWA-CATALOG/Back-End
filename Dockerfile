@@ -1,7 +1,9 @@
 FROM maven:3.8.1-jdk-11-slim AS build
 COPY src /Back-End/src/
 COPY pom.xml /Back-End
-WORKDIR /Back-End 
+WORKDIR /Back-End
+RUN mvn clean install
+RUN mvn package
 
 FROM openjdk:11.0-slim
 VOLUME /tmp
