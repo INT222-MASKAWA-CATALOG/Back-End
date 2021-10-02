@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>int222.integrated</groupId>
-	<artifactId>Maskawa.Catalog</artifactId>
+	<artifactId>Maskawa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Maskawa.Catalog</name>
+	<name>Maskawa</name>
 	<description>Project for INT222</description>
 	<properties>
 		<java.version>11</java.version>
