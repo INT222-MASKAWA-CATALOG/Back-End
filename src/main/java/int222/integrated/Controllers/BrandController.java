@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import int222.integrated.Models.Brand;
+import int222.integrated.Models.Member;
 import int222.integrated.Repositories.BrandJpaRepository;
 
 @CrossOrigin
@@ -24,5 +27,10 @@ public class BrandController {
 	public Brand showBrand(@PathVariable int brandid) {
 		Brand brand = this.brandJpa.findById(brandid).orElse(null);
 		return brand;
+	}
+	
+	@PostMapping(value = "/add-brand")
+	public Brand createBrand(@RequestBody Brand newBrand) {
+		return brandJpa.save(newBrand);	
 	}
 }
