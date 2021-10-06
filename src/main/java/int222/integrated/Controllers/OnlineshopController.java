@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,5 +36,12 @@ public class OnlineshopController {
 	@PostMapping(value = "/addOnlineshop")
 	public Onlineshop create(@RequestBody Onlineshop newOnlineshop) {
 		return onlineShopJpa.save(newOnlineshop);
+	}
+	
+	@DeleteMapping("/onlineshop/{onlineid}")
+	public String delete(@PathVariable Integer onlineid) {
+		onlineShopJpa.findById(onlineid).orElse(null);
+		onlineShopJpa.deleteById(onlineid);
+		return "Delete Online Shop  Success";
 	}
 }
