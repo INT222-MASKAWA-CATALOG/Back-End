@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler {
-
 	@ExceptionHandler(ProductException.class)
 	public ResponseEntity<Object> handleExceptions(ProductException exception, WebRequest webRequest) {
 		ExceptionResponse response = new ExceptionResponse(exception.getErrorCode(), exception.getMessage(),
