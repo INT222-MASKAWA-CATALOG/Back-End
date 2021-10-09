@@ -1,12 +1,10 @@
-FROM maven AS MAVENS
-COPY pom.xml /build/
-COPY src /build/src/
-WORKDIR /build/
-RUN  mvn clean package
+FROM maven AS build
+COPY src $PWD/src
+COPY pom.xml $PWD
+RUN mvn -f $PWD/pom.xml clean package
 
-FROM openjdk:11.0-slim
+FROM adoptopenjdk/openjdk11:latest
 VOLUME /tmp
 EXPOSE 3000
-ARG JAR_FILE=target/Maskawa.Catalog-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
+COPY --from=build $PWD/target/Maskawa.Catalog-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
+ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]
