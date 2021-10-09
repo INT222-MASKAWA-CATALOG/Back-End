@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class Product {
+public class product {
 	@Id
  	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productid")
@@ -42,17 +42,17 @@ public class Product {
 	
 	@ManyToOne
     @JoinColumn(name = "brandid", insertable = false, updatable = false)
-	Brand brand;
+	brand brand;
 
 	@ManyToOne
     @JoinColumn(name = "colorid", insertable = false, updatable = false)
-	Color color;
+	color color;
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Onlineshop> onlineshop;
+	Set<onlineshop> onlineshop;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Record> record;
+	Set<record> record;
 	
 
 //	Getter
@@ -84,7 +84,7 @@ public class Product {
 		return color.getColorname();
 	}
 	
-	public Set<Onlineshop> getOnlineshop() {
+	public Set<onlineshop> getOnlineshop() {
 		return onlineshop;	
 	}
 

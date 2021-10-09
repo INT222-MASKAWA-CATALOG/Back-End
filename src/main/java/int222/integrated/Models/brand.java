@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "brand")
-public class Brand {
+public class brand {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Brand {
 	private String Brandlink;
 	
 	@OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Product> product;
+	Set<product> product;
 
 	public int getBrandid() {
 		return Brandid;

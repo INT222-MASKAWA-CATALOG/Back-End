@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import int222.integrated.Exception.ExceptionResponse;
 import int222.integrated.Exception.ProductException;
-import int222.integrated.Models.Product;
+import int222.integrated.Models.product;
 import int222.integrated.Repositories.ProductJpaRepository;
 
 @CrossOrigin
@@ -24,13 +24,13 @@ public class ProductController {
 	private ProductJpaRepository productJpa;
 
 	@GetMapping("/product")
-	public List<Product> showAllProducts() {
+	public List<product> showAllProducts() {
 		return productJpa.findAll();
 	}
 
 	@GetMapping("/product/{productid}")
-	public Product showProduct(@PathVariable int productid) {
-		Product product = this.productJpa.findById(productid).orElse(null);
+	public product showProduct(@PathVariable int productid) {
+		product product = this.productJpa.findById(productid).orElse(null);
 		if (product == null) {
 			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
 					"Product id : " + productid + " does not exist ");
@@ -40,7 +40,7 @@ public class ProductController {
 	
 	// ยังไม่ได้ทำ throw Exception   //Add ได้
 	@PostMapping(value = "/addProduct")
-	public Product create(@RequestBody Product newProduct) {
+	public product create(@RequestBody product newProduct) {
 		/*Product product = productJpa.FindProductByProductName(newProduct.getProductname());
 		if(product.getProductname().equals(newProduct.getProductname())) {
 			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
@@ -59,7 +59,7 @@ public class ProductController {
 	
 	// ยังไม่ได้ทำ throw Exception   //
 	@PutMapping("/updateProduct/{productid}")
-	public Product updateProduct(@RequestBody Product updateProduct, @PathVariable int productid) throws Exception {
+	public product updateProduct(@RequestBody product updateProduct, @PathVariable int productid) throws Exception {
 		if (productJpa.findById(productid).orElse(null) == null) {
 			throw new Exception("Not Found Product");
 		}

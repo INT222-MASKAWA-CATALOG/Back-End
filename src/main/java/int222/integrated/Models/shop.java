@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "shop")
-public class Shop {
+public class shop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "shopid")
@@ -26,7 +26,7 @@ public class Shop {
 	private String Logo;
 	
 	@OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Onlineshop> onlineshop;
+	Set<onlineshop> onlineshop;
 
 	public int getShopid() {
 		return Shopid;

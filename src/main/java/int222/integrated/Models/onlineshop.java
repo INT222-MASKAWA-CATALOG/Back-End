@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "onlineshop")
-public class Onlineshop {
+public class onlineshop {
 	@Id
  	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "onlineid")
@@ -31,11 +31,11 @@ public class Onlineshop {
 	
 	@ManyToOne //เชื่อมถูกแล้ว
     @JoinColumn(name = "productid", insertable = false , updatable = false)
-	Product product;
+	product product;
 	
 	@ManyToOne //เชื่อมถูกแล้ว
     @JoinColumn(name = "shopid", insertable = false, updatable = false)
-	Shop shop;
+	shop shop;
 	
 //	Getter
 	public int getOnlineid() {
