@@ -25,6 +25,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/skeletonbear/back-end:master
+          tags: ghcr.io/skeletonbear/int222-maskawa-catalog/back-end:master
 
 
