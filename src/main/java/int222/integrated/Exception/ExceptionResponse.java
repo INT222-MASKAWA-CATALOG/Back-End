@@ -13,20 +13,14 @@ public class ExceptionResponse {
 		ERROR_CODE(int errorValue) {
 			this.errorValue = errorValue;
 		}
-
-		public int getValue() {
-			return errorValue;
-		}
 	}
 
 	private ERROR_CODE errorCode;
-	private int status;
 	private String message;
 	private LocalDateTime dateTime;
 
 	public ExceptionResponse(ERROR_CODE errorCode, String message, LocalDateTime dateTime) {
 		this.errorCode = errorCode;
-		this.status = errorCode.errorValue;
 		this.message = message;
 		this.dateTime = dateTime;
 	}

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import int222.integrated.Exception.ExceptionResponse;
+import int222.integrated.Exception.ProductException;
 import int222.integrated.Models.Product;
 import int222.integrated.Repositories.ProductJpaRepository;
 
@@ -29,31 +31,40 @@ public class ProductController {
 	@GetMapping("/product/{productid}")
 	public Product showProduct(@PathVariable int productid) {
 		Product product = this.productJpa.findById(productid).orElse(null);
+		if (product == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+					"Product id : " + productid + " does not exist ");
+		}
 		return product;
 	}
 	
+	// ยังไม่ได้ทำ throw Exception   //Add ได้
 	@PostMapping(value = "/addProduct")
 	public Product create(@RequestBody Product newProduct) {
+		/*Product product = productJpa.FindProductByProductName(newProduct.getProductname());
+		if(product.getProductname().equals(newProduct.getProductname())) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
+					"Product name : " + newProduct.getProductname() + " already exist ");
+		}*/
 		return productJpa.save(newProduct);
 	}
 
-	// ยังไม่ได้ทำ throw Exception
+	// ยังไม่ได้ทำ throw Exception   //Delete ยังไม่ได้
 	@DeleteMapping("/product/{productid}")
 	public String delete(@PathVariable Integer productid) {
 		productJpa.findById(productid).orElse(null);
 		productJpa.deleteById(productid);
 		return "Delete Product Success";
 	}
-
+	
+	// ยังไม่ได้ทำ throw Exception   //
 	@PutMapping("/updateProduct/{productid}")
 	public Product updateProduct(@RequestBody Product updateProduct, @PathVariable int productid) throws Exception {
-		if(productJpa.findById(productid).orElse(null) == null) {
+		if (productJpa.findById(productid).orElse(null) == null) {
 			throw new Exception("Not Found Product");
 		}
 		productJpa.findById(productid).orElse(null);
 		return productJpa.save(updateProduct);
 	}
-	
-	
-}
 
+}
