@@ -1,3 +1,9 @@
+FROM maven AS MAVENS
+COPY pom.xml /build/
+COPY src /build/src/
+WORKDIR /build/
+RUN  mvn clean package
+
 FROM openjdk:11.0-slim
 VOLUME /tmp
 EXPOSE 3000
