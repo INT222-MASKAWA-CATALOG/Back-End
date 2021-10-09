@@ -2,7 +2,7 @@ version: "3"
 services:
   backend:
     build: .
-    image: backend
+    image: backghcr.io/skeletonbear/back-end:latestend
     container_name: backend
     ports:
       - "3000:3000"
