@@ -30,34 +30,40 @@ public class ProductController {
 
 	@GetMapping("/product/{productid}")
 	public product showProduct(@PathVariable int productid) {
-		product product = this.productJpa.findById(productid).orElse(null);
-		if (product == null) {
+		product p = this.productJpa.findById(productid).orElse(null);
+		if (p == null) {
 			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
 					"Product id : " + productid + " does not exist ");
 		}
-		return product;
-	}
-	
-	// ยังไม่ได้ทำ throw Exception   //Add ได้
-	@PostMapping(value = "/addProduct")
-	public product create(@RequestBody product newProduct) {
-		/*Product product = productJpa.FindProductByProductName(newProduct.getProductname());
-		if(product.getProductname().equals(newProduct.getProductname())) {
-			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
-					"Product name : " + newProduct.getProductname() + " already exist ");
-		}*/
-		return productJpa.save(newProduct);
+		return p;
 	}
 
-	// ยังไม่ได้ทำ throw Exception   //Delete ยังไม่ได้
+	// ยังไม่ได้ทำ throw Exception //Add ได้
+	@PostMapping(value = "/addProduct")
+	public product create(@RequestBody product newProduct) {
+		/*
+		 * product p = this.productJpa.FindProductByProductName(p.getProductname());
+		 * if(p.getProductname().equals(newProduct.getProductname())){ throw new
+		 * ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
+		 * "Product name : " + newProduct.getProductname() + " already exist "); }
+		 */
+		return productJpa.save(newProduct);
+
+	}
+
+	// ยังไม่ได้ทำ throw Exception //Delete ยังไม่ได้
 	@DeleteMapping("/product/{productid}")
 	public String delete(@PathVariable Integer productid) {
-		productJpa.findById(productid).orElse(null);
+		product p = productJpa.findById(productid).orElse(null);
+		if (p == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+					"Product id : " + productid + " does not exist ");
+		}
 		productJpa.deleteById(productid);
 		return "Delete Product Success";
 	}
-	
-	// ยังไม่ได้ทำ throw Exception   //
+
+	// ยังไม่ได้ทำ throw Exception //ยังไม่ได้ test Update
 	@PutMapping("/updateProduct/{productid}")
 	public product updateProduct(@RequestBody product updateProduct, @PathVariable int productid) throws Exception {
 		if (productJpa.findById(productid).orElse(null) == null) {
