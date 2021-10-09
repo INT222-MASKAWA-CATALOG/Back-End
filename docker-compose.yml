@@ -1,7 +1,6 @@
 version: "3"
 services:
   backend:
-    build: .
     image: ghcr.io/skeletonbear/back-end:latest
     container_name: backend
     ports:
