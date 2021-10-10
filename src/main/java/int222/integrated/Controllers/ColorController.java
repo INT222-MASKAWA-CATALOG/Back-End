@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import int222.integrated.Models.color;
+import int222.integrated.Models.Color;
 import int222.integrated.Repositories.ColorJpaRepository;
 
 @CrossOrigin
@@ -20,18 +20,18 @@ public class ColorController {
 	private ColorJpaRepository colorJpa;
 
 	@GetMapping("/color")
-	public List<color> showAll() {
+	public List<Color> showAll() {
 		return colorJpa.findAll();
 	}
 	
 	@GetMapping("/color/{colorid}")
-	public color showBrand(@PathVariable int colorid) {
-		color color = this.colorJpa.findById(colorid).orElse(null);
+	public Color showBrand(@PathVariable int colorid) {
+		Color color = this.colorJpa.findById(colorid).orElse(null);
 		return color;
 	}
 	
 	@PostMapping(value = "/add-color")
-	public color createColor(@RequestBody color newColor) {
+	public Color createColor(@RequestBody Color newColor) {
 		return colorJpa.save(newColor);
 	}
 	

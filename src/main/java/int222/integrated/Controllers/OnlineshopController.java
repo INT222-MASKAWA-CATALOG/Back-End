@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //import int222.integrated.Exception.ExceptionResponse;
 //import int222.integrated.Exception.OnlineshopException;
-import int222.integrated.Models.onlineshop;
+import int222.integrated.Models.Onlineshop;
 import int222.integrated.Repositories.OnlineShopJpaRepository;
 
 @CrossOrigin
@@ -23,18 +23,18 @@ public class OnlineshopController {
 	private OnlineShopJpaRepository onlineShopJpa;
 
 	@GetMapping("/onlineshop")
-	public List<onlineshop> showAllOnlineshops() {
+	public List<Onlineshop> showAllOnlineshops() {
 		return onlineShopJpa.findAll();
 	}
 
 	@GetMapping("/onlineshop/{onlineid}")
-	public onlineshop showOnlineshops(@PathVariable int onlineid) {
-		onlineshop onlineshop = this.onlineShopJpa.findById(onlineid).orElse(null);
+	public Onlineshop showOnlineshops(@PathVariable int onlineid) {
+		Onlineshop onlineshop = this.onlineShopJpa.findById(onlineid).orElse(null);
 		return onlineshop;
 	}
 	
 	@PostMapping(value = "/addOnlineshop")
-	public onlineshop create(@RequestBody onlineshop newOnlineshop) {
+	public Onlineshop create(@RequestBody Onlineshop newOnlineshop) {
 		return onlineShopJpa.save(newOnlineshop);
 	}
 	

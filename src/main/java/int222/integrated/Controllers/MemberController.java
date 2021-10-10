@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import int222.integrated.Models.member;
+import int222.integrated.Models.Member;
 import int222.integrated.Repositories.MemberJpaRepository;
 
 @CrossOrigin
@@ -21,7 +21,7 @@ public class MemberController {
 	private MemberJpaRepository memberJpa;
 	
 	@GetMapping("/member")
-	public List<member> showAllMembers() {
+	public List<Member> showAllMembers() {
 		return memberJpa.findAll();
 	}
 	
@@ -34,7 +34,7 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "/createAccount")
-	public member create(@RequestBody member newAccount) {
+	public Member create(@RequestBody Member newAccount) {
 		return memberJpa.save(newAccount);	
 	}
 }

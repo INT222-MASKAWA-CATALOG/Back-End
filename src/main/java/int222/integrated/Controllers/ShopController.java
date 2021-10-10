@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import int222.integrated.Models.shop;
+import int222.integrated.Models.Shop;
 import int222.integrated.Repositories.ShopJpaRepository;
 
 @CrossOrigin
@@ -16,13 +16,13 @@ public class ShopController {
 	private ShopJpaRepository shopJpa;
 
 	@GetMapping("/shop")
-	public List<shop> showAllShops() {
+	public List<Shop> showAllShops() {
 		return shopJpa.findAll();
 	}
 
 	@GetMapping("/shop/{shopid}")
-	public shop showOnlineshops(@PathVariable int shopid) {
-		shop shop = this.shopJpa.findById(shopid).orElse(null);
+	public Shop showOnlineshops(@PathVariable int shopid) {
+		Shop shop = this.shopJpa.findById(shopid).orElse(null);
 		return shop;
 	}
 	//ดึงรูป Logo Shop

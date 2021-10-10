@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "color")
-public class color {
+public class Color {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class color {
 	private String Hexcode;
 	
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<product> product;
+	Set<Product> product;
 
 	public int getColorid() {
 		return Colorid;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import int222.integrated.Exception.ExceptionResponse;
 import int222.integrated.Exception.ProductException;
-import int222.integrated.Models.product;
+import int222.integrated.Models.Product;
 import int222.integrated.Repositories.ProductJpaRepository;
 
 @CrossOrigin
@@ -24,13 +24,13 @@ public class ProductController {
 	private ProductJpaRepository productJpa;
 
 	@GetMapping("/product")
-	public List<product> showAllProducts() {
+	public List<Product> showAllProducts() {
 		return productJpa.findAll();
 	}
 
 	@GetMapping("/product/{productid}")
-	public product showProduct(@PathVariable int productid) {
-		product p = this.productJpa.findById(productid).orElse(null);
+	public Product showProduct(@PathVariable int productid) {
+		Product p = this.productJpa.findById(productid).orElse(null);
 		if (p == null) {
 			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
 					"Product id : " + productid + " does not exist ");
@@ -40,7 +40,7 @@ public class ProductController {
 
 	// ยังไม่ได้ทำ throw Exception //Add ได้
 	@PostMapping(value = "/addProduct")
-	public product create(@RequestBody product newProduct) {
+	public Product create(@RequestBody Product newProduct) {
 		/*
 		 * product p = this.productJpa.FindProductByProductName(p.getProductname());
 		 * if(p.getProductname().equals(newProduct.getProductname())){ throw new
@@ -54,7 +54,7 @@ public class ProductController {
 	// ยังไม่ได้ทำ throw Exception //Delete ยังไม่ได้
 	@DeleteMapping("/product/{productid}")
 	public String delete(@PathVariable Integer productid) {
-		product p = productJpa.findById(productid).orElse(null);
+		Product p = productJpa.findById(productid).orElse(null);
 		if (p == null) {
 			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
 					"Product id : " + productid + " does not exist ");
@@ -65,7 +65,7 @@ public class ProductController {
 
 	// ยังไม่ได้ทำ throw Exception //ยังไม่ได้ test Update
 	@PutMapping("/updateProduct/{productid}")
-	public product updateProduct(@RequestBody product updateProduct, @PathVariable int productid) throws Exception {
+	public Product updateProduct(@RequestBody Product updateProduct, @PathVariable int productid) throws Exception {
 		if (productJpa.findById(productid).orElse(null) == null) {
 			throw new Exception("Not Found Product");
 		}

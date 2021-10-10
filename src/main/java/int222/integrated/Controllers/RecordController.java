@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import int222.integrated.Models.record;
+import int222.integrated.Models.Record;
 import int222.integrated.Repositories.RecordJpaRepository;
 
 @CrossOrigin
@@ -17,7 +17,7 @@ public class RecordController {
 	private RecordJpaRepository recordJpa;
 	
 	@GetMapping("/record")
-	public List<record> showAllRecords() {
+	public List<Record> showAllRecords() {
 		return recordJpa.findAll();
 	}
 }

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "record")
-public class record {
+public class Record {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +26,11 @@ public class record {
 	
 	@ManyToOne
     @JoinColumn(name = "userid", insertable = false, updatable = false)
-	member member;
+	Member member;
 	
 	@ManyToOne
     @JoinColumn(name = "productid", insertable = false, updatable = false)
-	product product;
+	Product product;
 
 	public int getRecordid() {
 		return Recordid;
