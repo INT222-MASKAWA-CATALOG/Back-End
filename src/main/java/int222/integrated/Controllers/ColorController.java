@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import int222.integrated.Exception.ExceptionResponse;
+import int222.integrated.Exception.ProductException;
 import int222.integrated.Models.Color;
 import int222.integrated.Repositories.ColorJpaRepository;
 
@@ -23,23 +25,31 @@ public class ColorController {
 	public List<Color> showAll() {
 		return colorJpa.findAll();
 	}
-	
+
 	@GetMapping("/color/{colorid}")
 	public Color showBrand(@PathVariable int colorid) {
 		Color color = this.colorJpa.findById(colorid).orElse(null);
+		if (color == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.COLOR_ID_DOES_NOT_EXIST,
+					"color id : " + colorid + " does not exist ");
+		}
+
 		return color;
 	}
-	
-	@PostMapping(value = "/add-color")
+
+	@PostMapping(value = "/addcolor")
 	public Color createColor(@RequestBody Color newColor) {
 		return colorJpa.save(newColor);
 	}
-	
+
 	@DeleteMapping("/color/{colorid}")
 	public String delete(@PathVariable Integer colorid) {
-		colorJpa.findById(colorid).orElse(null);
+		Color color = this.colorJpa.findById(colorid).orElse(null);
+		if (color == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.COLOR_ID_DOES_NOT_EXIST,
+					"color id : " + colorid + " does not exist ");
+		}
 		colorJpa.deleteById(colorid);
 		return "Delete Color Success";
 	}
-	
 }

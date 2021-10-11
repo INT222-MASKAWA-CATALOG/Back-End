@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import int222.integrated.Exception.ExceptionResponse;
+import int222.integrated.Exception.ProductException;
 import int222.integrated.Models.Brand;
 import int222.integrated.Repositories.BrandJpaRepository;
 
@@ -26,17 +29,25 @@ public class BrandController {
 	@GetMapping("/brand/{brandid}")
 	public Brand showBrand(@PathVariable int brandid) {
 		Brand brand = this.brandJpa.findById(brandid).orElse(null);
+		if (brand == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.BRAND_ID_DOES_NOT_EXIST,
+					"brand id : " + brandid + " does not exist ");
+		}
 		return brand;
 	}
-	
-	@PostMapping(value = "/add-brand")
+
+	@PostMapping(value = "/addbrand")
 	public Brand createBrand(@RequestBody Brand newBrand) {
-		return brandJpa.save(newBrand);	
+		return brandJpa.save(newBrand);
 	}
-	
+
 	@DeleteMapping("/brand/{brandid}")
 	public String delete(@PathVariable Integer brandid) {
-		brandJpa.findById(brandid).orElse(null);
+		Brand brand = this.brandJpa.findById(brandid).orElse(null);
+		if (brand == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.BRAND_ID_DOES_NOT_EXIST,
+					"brand id : " + brandid + " does not exist ");
+		}
 		brandJpa.deleteById(brandid);
 		return "Delete Brand Success";
 	}

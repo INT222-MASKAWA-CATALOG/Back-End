@@ -30,33 +30,34 @@ public class ProductController {
 
 	@GetMapping("/product/{productid}")
 	public Product showProduct(@PathVariable int productid) {
-		Product p = this.productJpa.findById(productid).orElse(null);
-		if (p == null) {
-			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+		Product product = this.productJpa.findById(productid).orElse(null);
+		if (product == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_ID_DOES_NOT_EXIST,
 					"Product id : " + productid + " does not exist ");
 		}
-		return p;
+		return product;
 	}
 
-	// ยังไม่ได้ทำ throw Exception //Add ได้
+	// ยังไม่ได้ทำ throw Exception //Add ได้ เเต่ยังทำ Exception ไม่ได้
 	@PostMapping(value = "/addProduct")
 	public Product create(@RequestBody Product newProduct) {
+
 		/*
-		 * product p = this.productJpa.FindProductByProductName(p.getProductname());
-		 * if(p.getProductname().equals(newProduct.getProductname())){ throw new
+		 * Product p = productJpa.FindProductByProductName(newProduct.getProductname());
+		 * if (p.getProductname().equals(newProduct.getProductname())) { throw new
 		 * ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
 		 * "Product name : " + newProduct.getProductname() + " already exist "); }
 		 */
+
 		return productJpa.save(newProduct);
 
 	}
 
-	// ยังไม่ได้ทำ throw Exception //Delete ยังไม่ได้
 	@DeleteMapping("/product/{productid}")
 	public String delete(@PathVariable Integer productid) {
-		Product p = productJpa.findById(productid).orElse(null);
-		if (p == null) {
-			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_DOES_NOT_EXIST,
+		Product product = productJpa.findById(productid).orElse(null);
+		if (product == null) {
+			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_ID_DOES_NOT_EXIST,
 					"Product id : " + productid + " does not exist ");
 		}
 		productJpa.deleteById(productid);
@@ -72,5 +73,4 @@ public class ProductController {
 		productJpa.findById(productid).orElse(null);
 		return productJpa.save(updateProduct);
 	}
-
 }
