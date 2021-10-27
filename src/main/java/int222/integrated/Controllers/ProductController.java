@@ -25,6 +25,10 @@ public class ProductController {
 	@Autowired
 	private ProductJpaRepository productJpa;
 	
+	@GetMapping("/product")
+	public List<Product> showAllProducts() {
+		return productJpa.findAll();
+	}
 
 	@GetMapping("/product/{productid}")
 	public Product showProduct(@PathVariable int productid) {
