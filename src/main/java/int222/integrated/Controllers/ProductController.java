@@ -16,17 +16,15 @@ import int222.integrated.Exception.ExceptionResponse;
 import int222.integrated.Exception.ProductException;
 import int222.integrated.Models.Product;
 import int222.integrated.Repositories.ProductJpaRepository;
+import int222.integrated.Service.StorageService;
 
 @CrossOrigin
 @RestController
 public class ProductController {
+	
 	@Autowired
 	private ProductJpaRepository productJpa;
-
-	@GetMapping("/product")
-	public List<Product> showAllProducts() {
-		return productJpa.findAll();
-	}
+	
 
 	@GetMapping("/product/{productid}")
 	public Product showProduct(@PathVariable int productid) {

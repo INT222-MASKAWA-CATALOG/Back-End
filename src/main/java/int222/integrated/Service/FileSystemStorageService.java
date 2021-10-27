@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import int222.integrated.Exception.StorageException;
 import int222.integrated.Exception.StorageFileNotFoundException;
@@ -76,6 +77,11 @@ public class FileSystemStorageService implements StorageService {
 		}
 	}
 
+    @Override
+    public void deleteAll() {
+        FileSystemUtils.deleteRecursively(rootLocation.toFile());
+    }
+	
 	@Override
 	public void delete(String filename) throws IOException {
 		Path file = load(filename);

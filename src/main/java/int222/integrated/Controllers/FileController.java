@@ -1,6 +1,10 @@
 package int222.integrated.Controllers;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -15,9 +19,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
 import int222.integrated.Repositories.ProductJpaRepository;
 import int222.integrated.Service.StorageService;
 import int222.integrated.Exception.*;
+import int222.integrated.Models.Product;
 
 @CrossOrigin
 @RestController
@@ -41,7 +48,7 @@ public class FileController {
 	@PostMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 		storageService.store(file);
-		return "Upload complete";
+		return file.getOriginalFilename()+"Upload complete";
 	}
 
 	@PutMapping("/updateimage/{productcode}")
@@ -54,12 +61,29 @@ public class FileController {
 	}
 
 	@DeleteMapping(value = "/deleteFile/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
-	public void deleteFile(@PathVariable String filename) throws IOException {
+	public String deleteFile(@PathVariable String filename) throws IOException {
 		storageService.delete(filename);
+		return "Delete image filename: "+filename;
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
+	
+	@PostMapping("/createPostWithImage")
+    public String createPost(@RequestParam("Product") String newProduct , @RequestParam("file") MultipartFile file) {
+		Product product = new Gson().fromJson(newProduct, Product.class);
+		productsJpaRepository.save(product);
+    	handleFileUpload(file);
+    	return "Complete";
+    }
+    
+    @DeleteMapping("/deleteProduct/{NumberProduct}")
+    public String deletePost(@PathVariable int productid) throws IOException {
+    	Product product = productsJpaRepository.findById(productid).orElse(null);
+    	storageService.delete(product.getImage());
+    	productsJpaRepository.deleteById(productid);
+       return "Delete Post Number: "+productid+" complete." ;
+   }
 }
