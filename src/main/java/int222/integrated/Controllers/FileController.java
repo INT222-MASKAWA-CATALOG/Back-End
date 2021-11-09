@@ -71,7 +71,7 @@ public class FileController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PostMapping("/createPostWithImage")
+	@PostMapping("/addProductWithImage")
     public String createPost(@RequestParam("Product") String newProduct , @RequestParam("file") MultipartFile file) {
 		Product product = new Gson().fromJson(newProduct, Product.class);
 		productsJpaRepository.save(product);
