@@ -76,8 +76,16 @@ public class Product {
 		return Image;
 	}
 	
+	public int getBrandid() {
+		return brand.getBrandid();
+	}
+	
 	public String getBrandname() {
 		return brand.getBrandname();
+	}
+	
+	public int getColorid() {
+		return color.getColorid();
 	}
 
 	public String getColorname() {

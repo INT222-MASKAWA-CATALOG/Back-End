@@ -79,7 +79,7 @@ public class FileController {
     	return "Complete";
     }
     
-    @DeleteMapping("/deleteProduct/{NumberProduct}")
+    @DeleteMapping("/product/{productid}")
     public String deletePost(@PathVariable int productid) throws IOException {
     	Product product = productsJpaRepository.findById(productid).orElse(null);
     	storageService.delete(product.getImage());

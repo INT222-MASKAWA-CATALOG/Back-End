@@ -55,16 +55,16 @@ public class ProductController {
 
 	}
 
-	@DeleteMapping("/product/{productid}")
-	public String delete(@PathVariable Integer productid) {
-		Product product = productJpa.findById(productid).orElse(null);
-		if (product == null) {
-			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_ID_DOES_NOT_EXIST,
-					"Product id : " + productid + " does not exist ");
-		}
-		productJpa.deleteById(productid);
-		return "Delete Product Success";
-	}
+//	@DeleteMapping("/product/{productid}")
+//	public String delete(@PathVariable Integer productid) {
+//		Product product = productJpa.findById(productid).orElse(null);
+//		if (product == null) {
+//			throw new ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_ID_DOES_NOT_EXIST,
+//					"Product id : " + productid + " does not exist ");
+//		}
+//		productJpa.deleteById(productid);
+//		return "Delete Product Success";
+//	}
 
 	// ยังไม่ได้ทำ throw Exception //ยังไม่ได้ test Update
 	@PutMapping("/updateProduct/{productid}")
