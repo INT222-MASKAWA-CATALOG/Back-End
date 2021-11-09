@@ -72,7 +72,7 @@ public class FileController {
 	}
 	
 	@PostMapping("/addProductWithImage")
-    public String createPost(@RequestParam("Product") String newProduct , @RequestParam("file") MultipartFile file) {
+    public String createPost(@RequestParam("product") String newProduct , @RequestParam("file") MultipartFile file) {
 		Product product = new Gson().fromJson(newProduct, Product.class);
 		productsJpaRepository.save(product);
     	handleFileUpload(file);
