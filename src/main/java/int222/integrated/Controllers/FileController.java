@@ -45,11 +45,11 @@ public class FileController {
 		return storageService.loadAsResource(filename);
 	}
 	
-//	@PostMapping("/uploadImage")
-//	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-//		storageService.store(file);
-//		return file.getOriginalFilename()+"Upload complete";
-//	}
+	@PostMapping("/uploadImage")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+		storageService.store(file);
+		return file.getOriginalFilename()+"Upload complete";
+	}
 
 	@PutMapping("/updateimage/{productcode}")
 	public String handleFileUpdate(@PathVariable int productcode, @RequestParam("file") MultipartFile file)
