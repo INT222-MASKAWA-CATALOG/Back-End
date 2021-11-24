@@ -1,5 +1,6 @@
 package int222.integrated.Models;
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,7 @@ public class Product {
 	private String Productname;
 
 	@Column(name = "saledate")
-	private java.sql.Date Saledate;
+	private String Saledate;
 	
 	@Column(name = "description")
 	private String Description;
@@ -64,7 +65,7 @@ public class Product {
 		return Productname;
 	}
 	
-	public java.sql.Date getSaledate() {
+	public String getSaledate() {
 		return Saledate;
 	}
 	
@@ -106,8 +107,9 @@ public class Product {
 		this.Productname = productname;
 	}
 
-	public void setSaledate(java.sql.Date saledate) {
-		this.Saledate = saledate;
+
+	public void setSaledate(String saledate) {
+		Saledate = saledate;
 	}
 
 	public void setDescription(String description) {

@@ -1,19 +1,34 @@
 package int222.integrated.Models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "member")
-public class Member {
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.User;
+
+@Entity(name = "user")
+public class AuthenticationUser /*extends User implements Serializable*/ {
+
+	/*private static final long serialVersionUID = -7924450568553326886L;
+
+	public AuthenticationUser() {
+		super("anonymous", "", new ArrayList<>());
+	}
+
+	public AuthenticationUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, authorities);
+	}*/
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,66 +50,38 @@ public class Member {
 	@Column(name = "gender")
 	private String Gender;
 
-	@Column(name = "status")
-	private String Status;
+	@Column(name = "roleid")
+	private int Roleid;
 
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToOne
+	@JoinColumn(name = "roleid", insertable = false, updatable = false)
+	Role role;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Record> record;
 
 	public int getUserid() {
 		return Userid;
 	}
 
-	public void setUserid(int userid) {
-		this.Userid = userid;
-	}
-
 	public String getPassword() {
 		return Password;
-	}
-
-	public void setPassword(String password) {
-		this.Password = password;
 	}
 
 	public String getUsername() {
 		return Username;
 	}
 
-	public void setUsername(String username) {
-		this.Username = username;
-	}
-
 	public String getEmail() {
 		return Email;
 	}
 
-	public void setEmail(String email) {
-		this.Email = email;
-	}
-
-	public String getPhon() {
+	public String getPhone() {
 		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public String getGender() {
 		return Gender;
-	}
-
-	public void setGender(String gender) {
-		this.Gender = gender;
-	}
-
-	public String getStatus() {
-		return Status;
-	}
-
-	public void setStatus(String status) {
-		this.Status = status;
 	}
 
 }

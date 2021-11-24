@@ -26,7 +26,7 @@ public class Record {
 	
 	@ManyToOne
     @JoinColumn(name = "userid", insertable = false, updatable = false)
-	Member member;
+	AuthenticationUser user;
 	
 	@ManyToOne
     @JoinColumn(name = "productid", insertable = false, updatable = false)
