@@ -15,7 +15,7 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "roleid")
-	private int Roleid;
+	private int roleid;
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<AuthenticationUser> authenticationUser;
 

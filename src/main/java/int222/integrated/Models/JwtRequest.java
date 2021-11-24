@@ -3,15 +3,15 @@ package int222.integrated.Models;
 import java.io.Serializable;
 
 public class JwtRequest implements Serializable {
-	
-	private static final long serialVersionUID = 3999923302642739896L;
+
+	//private static final long serialVersionUID = 3999923302642739896L;
 	private String username;
 	private String password;
-	
+
 	public JwtRequest() {
-		
+
 	};
-	
+
 	public JwtRequest(String username, String password) {
 		this.setUsername(username);
 		this.setPassword(password);
@@ -32,5 +32,5 @@ public class JwtRequest implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	};
-	
+
 }
