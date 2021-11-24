@@ -75,7 +75,7 @@ public class ProductController {
 
 
 	// ยังไม่ได้ทำ throw Exception //ยังไม่ได้ test Update
-	@PutMapping("/updateProduct/{productid}")
+	@PutMapping("/product/{productid}")
 	public Product updateProduct(@RequestBody Product updateProduct, @PathVariable int productid) throws Exception {
 		if (productsJpa.findById(productid).orElse(null) == null) {
 			throw new Exception("Not Found Product");
@@ -84,8 +84,8 @@ public class ProductController {
 		return productsJpa.save(updateProduct);
 	}
 	
-	@DeleteMapping("/deletProduct/{productid}")
-	public String deletePost(@PathVariable int productid) throws IOException {
+	@DeleteMapping("/product/{productid}")
+	public String deleteProduct(@PathVariable int productid) throws IOException {
 		Product product = productsJpa.findById(productid).orElse(null);
 		storageService.delete(product.getImage());
 		productsJpa.deleteById(productid);
@@ -125,7 +125,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/addProductWithImage")
-	public String createPost(@RequestParam("product") String newProduct, @RequestParam("file") MultipartFile file) {
+	public String createProduct(@RequestParam("product") String newProduct, @RequestParam("file") MultipartFile file) {
 		Product product = new Gson().fromJson(newProduct, Product.class);
 		productsJpa.save(product);
 		handleFileUpload(file);
