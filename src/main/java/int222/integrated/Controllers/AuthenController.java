@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import int222.integrated.Models.JwtRequest;
 import int222.integrated.Models.JwtResponse;
 import int222.integrated.Repositories.UserJpaRepository;
 import int222.integrated.Service.JwtTokenService;
+import int222.integrated.Service.ServiceUtil;
 
 @RestController
 public class AuthenController {
@@ -46,6 +48,12 @@ public class AuthenController {
 		UserDetails userdetail = new User(user.getUsername(), user.getPassword(), new ArrayList<>());
 		String tk = jwtTokenService.generateToken(userdetail, user.getRole().getName());
 		return new JwtResponse(tk);
+	}
+	
+	@GetMapping("/me")
+	public AuthenticationUser getMe(){
+		String username = ServiceUtil.getUsername();
+		return userJpaRepository.findByUsername(username);
 	}
 	
 

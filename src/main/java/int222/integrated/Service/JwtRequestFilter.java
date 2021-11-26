@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,35 +23,6 @@ public class JwtRequestFilter extends GenericFilterBean {
 
 	@Autowired
 	private JwtUserDetailsService jwtUserDetailsService;
-
-//	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-//			throws ServletException, IOException {
-//
-//		final String authorizationHeader = request.getHeader("Authorization");
-//
-//		String username = null;
-//		String jwt = null;
-//
-//		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-//			jwt = authorizationHeader.substring(7);
-//			username = jwtTokenService.getUsernameFromToken(jwt);
-//		}
-//
-//		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-//
-//			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
-//
-//			if (jwtTokenService.validateToken(jwt, userDetails)) {
-//
-//				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-//						userDetails, null, userDetails.getAuthorities());
-//				usernamePasswordAuthenticationToken
-//						.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-//			}
-//		}
-//		chain.doFilter(request, response);
-//	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
