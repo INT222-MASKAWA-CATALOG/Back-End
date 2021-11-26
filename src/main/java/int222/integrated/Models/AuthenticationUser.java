@@ -1,8 +1,8 @@
 package int222.integrated.Models;
 
-//import java.io.Serializable;
-//import java.util.ArrayList;
-//import java.util.Collection;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,22 +14,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 @Entity(name = "user")
-public class AuthenticationUser /* extends User implements Serializable */
+public class AuthenticationUser  extends User implements Serializable 
 {
 
-//	private static final long serialVersionUID = -7924450568553326886L;
-//
-//	public AuthenticationUser() {
-//		super("anonymous", "", new ArrayList<>());
-//	}
-//
-//	public AuthenticationUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-//		super(username, password, authorities);
-//	}
+	private static final long serialVersionUID = -7924450568553326886L;
+
+	public AuthenticationUser() {
+		super("anonymous", "", new ArrayList<>());
+	}
+
+	public AuthenticationUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, authorities);
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -132,4 +132,8 @@ public class AuthenticationUser /* extends User implements Serializable */
 	public void setRecord(Set<Record> record) {
 		this.record = record;
 	}
+
+
+
+
 }

@@ -1,6 +1,6 @@
 package int222.integrated.Service;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtTokenService {
-	private static final long serialVersionUID = -2550185165626007488L;
+	//private static final long serialVersionUID = -2550185165626007488L;
 	@Value("#{${integrated.max-token-interval-hour}*60*60}")
 	private long JWT_TOKEN_VALIDITY;
 	@Value("${jwt.secret}")

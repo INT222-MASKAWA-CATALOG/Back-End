@@ -1,6 +1,5 @@
 package int222.integrated.Models;
 
-import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product {
 	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productid")
 	private int Productid;
 
@@ -27,64 +26,62 @@ public class Product {
 
 	@Column(name = "saledate")
 	private String Saledate;
-	
+
 	@Column(name = "description")
 	private String Description;
 
 	@Column(name = "image")
 	private String Image;
-	
+
 	@Column(name = "brandid")
 	private int Brandid;
-	
+
 	@Column(name = "colorid")
 	private int Colorid;
-		
-	
+
 	@ManyToOne
-    @JoinColumn(name = "brandid", insertable = false, updatable = false)
+	@JoinColumn(name = "brandid", insertable = false, updatable = false)
 	Brand brand;
 
 	@ManyToOne
-    @JoinColumn(name = "colorid", insertable = false, updatable = false)
+	@JoinColumn(name = "colorid", insertable = false, updatable = false)
 	Color color;
-	
+
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Onlineshop> onlineshop;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Record> record;
-	
 
 //	Getter
 	public int getProductid() {
 		return Productid;
 	}
-	
+
 	public String getProductname() {
 		return Productname;
 	}
-	
+
 	public String getSaledate() {
 		return Saledate;
 	}
-	
+
 	public String getDescription() {
 		return Description;
 	}
-	
+
 	public String getImage() {
 		return Image;
 	}
-	
+
 	public int getBrandid() {
 		return brand.getBrandid();
 	}
-	
+
 	public String getBrandname() {
 		return brand.getBrandname();
 	}
-	
+
 	public int getColorid() {
 		return color.getColorid();
 	}
@@ -92,12 +89,11 @@ public class Product {
 	public String getColorname() {
 		return color.getColorname();
 	}
-	
+
 	public Set<Onlineshop> getOnlineshop() {
-		return onlineshop;	
+		return onlineshop;
 	}
 
-	
 //	Setter
 	public void setProductid(int productid) {
 		this.Productid = productid;
@@ -106,7 +102,6 @@ public class Product {
 	public void setProductname(String productname) {
 		this.Productname = productname;
 	}
-
 
 	public void setSaledate(String saledate) {
 		Saledate = saledate;
