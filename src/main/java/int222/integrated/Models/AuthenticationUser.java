@@ -132,8 +132,4 @@ public class AuthenticationUser  extends User implements Serializable
 	public void setRecord(Set<Record> record) {
 		this.record = record;
 	}
-
-
-
-
 }

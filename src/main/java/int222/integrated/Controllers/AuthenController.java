@@ -4,8 +4,10 @@ import java.util.ArrayList;
 //import java.util.Collection;
 //import java.util.HashMap;
 //import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import int222.integrated.Exception.ExceptionResponse;
+import int222.integrated.Exception.UserNameException;
 import int222.integrated.Models.AuthenticationUser;
 import int222.integrated.Models.JwtRequest;
 import int222.integrated.Models.JwtResponse;
@@ -36,6 +40,8 @@ public class AuthenController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
+	public int numOfUser;
+
 	@PostMapping("/login")
 	public JwtResponse getlogin(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		AuthenticationUser user = userJpaRepository.findByUsername(authenticationRequest.getUsername());
@@ -49,13 +55,35 @@ public class AuthenController {
 		String tk = jwtTokenService.generateToken(userdetail, user.getRole().getName());
 		return new JwtResponse(tk);
 	}
-	
+
 	@GetMapping("/me")
-	public AuthenticationUser getMe(){
+	public AuthenticationUser getMe() {
 		String username = ServiceUtil.getUsername();
 		return userJpaRepository.findByUsername(username);
 	}
 	
+    /*@GetMapping("/alluser")
+    public List<AuthenticationUser> getUser(){
+        return userJpaRepository.findAll();
+    }
 
+	@PostMapping(value = "/register")
+	public ResponseEntity<?> saveUser(@RequestBody AuthenticationUser user) throws RuntimeException {
+		if (userJpaRepository.findByUsername(user.getUsername()).orElse(null) != null && userJpaRepository
+				.findByUsername(user.getUsername()).orElse(null).getUsername() == user.getUsername()) {
+			throw new UserNameException(ExceptionResponse.ERROR_CODE.USERNAME_ALREADY_EXIST,
+					"Is have already email exist");
+		} else {
+			this.numOfUser = userJpaRepository.findAll().size() - 1 == -1 ? 300301
+					: userJpaRepository.findAll().get(userJpaRepository.findAll().size() - 1).getUserid() + 1;
+			AuthenticationUser newuser = new AuthenticationUser();
 
+//            this.numOfUser,user.getUsername(),
+//            user.getEmail(),user.getPhone(),user.getGender(),user.getRole()
+
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+			return ResponseEntity.ok(userJpaRepository.save(newuser));
+		}
+	}*/
 }
