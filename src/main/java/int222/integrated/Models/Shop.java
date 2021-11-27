@@ -17,39 +17,39 @@ public class Shop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "shopid")
-	private int Shopid;
+	private int shopid;
 
 	@Column(name = "shopname")
-	private String Shopname;
+	private String shopname;
 
 	@Column(name = "logo")
-	private String Logo;
+	private String logo;
 	
 	@OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Onlineshop> onlineshop;
 
 	public int getShopid() {
-		return Shopid;
+		return shopid;
 	}
 
 	public void setShopid(int shopid) {
-		Shopid = shopid;
+		this.shopid = shopid;
 	}
 
 	public String getShopname() {
-		return Shopname;
+		return shopname;
 	}
 
 	public void setShopname(String shopname) {
-		Shopname = shopname;
+		this.shopname = shopname;
 	}
 
 	public String getLogo() {
-		return Logo;
+		return logo;
 	}
 
 	public void setLogo(String logo) {
-		Logo = logo;
+		this.logo = logo;
 	}
 	
 	

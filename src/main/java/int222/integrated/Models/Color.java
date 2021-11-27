@@ -17,39 +17,39 @@ public class Color {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "colorid")
-	private int Colorid;
+	private int colorid;
 
 	@Column(name = "colorname")
-	private String Colorname;
+	private String colorname;
 	
 	@Column(name = "hexcode")
-	private String Hexcode;
+	private String hexcode;
 	
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 
 	public int getColorid() {
-		return Colorid;
+		return colorid;
 	}
 
 	public void setColorid(int colorid) {
-		Colorid = colorid;
+		this.colorid = colorid;
 	}
 
 	public String getHexcode() {
-		return Hexcode;
+		return hexcode;
 	}
 
 	public void setHexcode(String hexcode) {
-		Hexcode = hexcode;
+		this.hexcode = hexcode;
 	}
 
 	public String getColorname() {
-		return Colorname;
+		return colorname;
 	}
 
 	public void setColorname(String colorname) {
-		Colorname = colorname;
+		this.colorname = colorname;
 	}
 
 

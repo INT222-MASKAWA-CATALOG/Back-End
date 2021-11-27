@@ -17,39 +17,39 @@ public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "brandid")
-	private int Brandid;
+	private int brandid;
 
 	@Column(name = "brandname")
-	private String Brandname;
+	private String brandname;
 
 	@Column(name = "brandlink")
-	private String Brandlink;
+	private String brandlink;
 	
 	@OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 
 	public int getBrandid() {
-		return Brandid;
+		return brandid;
 	}
 
 	public void setBrandid(int brandid) {
-		this.Brandid = brandid;
+		this.brandid = brandid;
 	}
 
 	public String getBrandname() {
-		return Brandname;
+		return brandname;
 	}
 
 	public void setBrandname(String brandname) {
-		this.Brandname = brandname;
+		this.brandname = brandname;
 	}
 
 	public String getBrandlink() {
-		return Brandlink;
+		return brandlink;
 	}
 
 	public void setBrandlink(String brandlink) {
-		this.Brandlink = brandlink;
+		this.brandlink = brandlink;
 	}
 
 	

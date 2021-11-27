@@ -16,13 +16,13 @@ public class Record {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "recordid")
-	private int Recordid;
+	private int recordid;
 	
 	@Column(name = "userid")
-	private int Userid;
+	private int userid;
 	
 	@Column(name = "productid")
-	private int Productid;
+	private int productid;
 	
 	@ManyToOne
     @JoinColumn(name = "userid", insertable = false, updatable = false)
@@ -33,27 +33,27 @@ public class Record {
 	Product product;
 
 	public int getRecordid() {
-		return Recordid;
+		return recordid;
 	}
 
 	public void setRecordid(int recordid) {
-		Recordid = recordid;
+		this.recordid = recordid;
 	}
 
 	public int getUserid() {
-		return Userid;
+		return userid;
 	}
 
 	public void setUserid(int userid) {
-		Userid = userid;
+		this.userid = userid;
 	}
 
 	public int getProductid() {
-		return Productid;
+		return productid;
 	}
 
 	public void setProductid(int productid) {
-		Productid = productid;
+		this.productid = productid;
 	}
 
 	

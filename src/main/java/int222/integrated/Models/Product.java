@@ -19,25 +19,25 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productid")
-	private int Productid;
+	private int productid;
 
 	@Column(name = "productname")
-	private String Productname;
+	private String productname;
 
 	@Column(name = "saledate")
-	private String Saledate;
+	private String saledate;
 
 	@Column(name = "description")
-	private String Description;
+	private String description;
 
 	@Column(name = "image")
-	private String Image;
+	private String image;
 
 	@Column(name = "brandid")
-	private int Brandid;
+	private int brandid;
 
 	@Column(name = "colorid")
-	private int Colorid;
+	private int colorid;
 
 	@ManyToOne
 	@JoinColumn(name = "brandid", insertable = false, updatable = false)
@@ -55,23 +55,23 @@ public class Product {
 
 //	Getter
 	public int getProductid() {
-		return Productid;
+		return productid;
 	}
 
 	public String getProductname() {
-		return Productname;
+		return productname;
 	}
 
 	public String getSaledate() {
-		return Saledate;
+		return saledate;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public String getImage() {
-		return Image;
+		return image;
 	}
 
 	public int getBrandid() {
@@ -96,31 +96,31 @@ public class Product {
 
 //	Setter
 	public void setProductid(int productid) {
-		this.Productid = productid;
+		this.productid = productid;
 	}
 
 	public void setProductname(String productname) {
-		this.Productname = productname;
+		this.productname = productname;
 	}
 
 	public void setSaledate(String saledate) {
-		Saledate = saledate;
+		this.saledate = saledate;
 	}
 
 	public void setDescription(String description) {
-		this.Description = description;
+		this.description = description;
 	}
 
 	public void setImage(String image) {
-		this.Image = image;
+		this.image = image;
 	}
 
 	public void setBrandid(int brandid) {
-		this.Brandid = brandid;
+		this.brandid = brandid;
 	}
 
 	public void setColorid(int colorid) {
-		this.Colorid = colorid;
+		this.colorid = colorid;
 	}
 
 }

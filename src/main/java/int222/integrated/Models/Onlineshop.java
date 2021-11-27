@@ -15,19 +15,19 @@ public class Onlineshop {
 	@Id
  	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "onlineid")
-	private int Onlineid;
+	private int onlineid;
 	
 	@Column(name = "productid")
-	private int Productid;
+	private int productid;
 	
 	@Column(name = "price")
-	private Float Price;
+	private Float price;
 	
 	@Column(name = "productlink")
-	private String Productlink;
+	private String productlink;
 	
 	@Column(name = "shopid")
-	private String Shopid;
+	private String shopid;
 	
 	@ManyToOne //เชื่อมถูกแล้ว
     @JoinColumn(name = "productid", insertable = false , updatable = false)
@@ -39,15 +39,15 @@ public class Onlineshop {
 	
 //	Getter
 	public int getOnlineid() {
-		return Onlineid;
+		return onlineid;
 	}
 
 	public Float getPrice() {
-		return Price;
+		return price;
 	}
 
 	public String getProductlink() {
-		return Productlink;
+		return productlink;
 	}
 	
 	public String getShopname() {
@@ -60,23 +60,23 @@ public class Onlineshop {
 	
 //	Setter
 	public void setOnlineid(int onlineid) {
-		Onlineid = onlineid;
+		this.onlineid = onlineid;
 	}
 
 	public void setProductid(int productid) {
-		Productid = productid;
+		this.productid = productid;
 	}
 
 	public void setPrice(Float price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public void setProductlink(String productlink) {
-		Productlink = productlink;
+		this.productlink = productlink;
 	}
 
 	public void setShopid(String shopid) {
-		Shopid = shopid;
+		this.shopid = shopid;
 	}
 
 	
