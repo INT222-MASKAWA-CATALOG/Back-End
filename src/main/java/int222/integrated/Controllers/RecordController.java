@@ -19,20 +19,26 @@ import int222.integrated.Repositories.RecordJpaRepository;
 public class RecordController {
 	@Autowired
 	private RecordJpaRepository recordJpa;
+
+//  ---------------------------------- GetMapping ----------------------------------
 	
 	@GetMapping("/record")
 	public List<Record> showAllRecords() {
 		return recordJpa.findAll();
 	}
+
+//  ---------------------------------- PostMapping ----------------------------------
 	
 	@PostMapping("/addRecord")
-    public void addCart(@RequestBody Record record) {
+	public void addCart(@RequestBody Record record) {
 		recordJpa.save(record);
-    }
+	}
+
+//  ---------------------------------- DeleteMapping ----------------------------------
 	
-	 @DeleteMapping("/deleteRecord/{recordid}")
-     public String deleteRecordById(@PathVariable("recordid") int recordid){
-		 recordJpa.deleteById(recordid);
-         return "delete success";
-     }
+	@DeleteMapping("/deleteRecord/{recordid}")
+	public String deleteRecordById(@PathVariable("recordid") int recordid) {
+		recordJpa.deleteById(recordid);
+		return "delete success";
+	}
 }

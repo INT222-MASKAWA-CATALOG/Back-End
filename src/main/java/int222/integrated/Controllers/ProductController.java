@@ -2,9 +2,6 @@ package int222.integrated.Controllers;
 
 import java.util.List;
 import java.io.IOException;
-//import java.lang.reflect.Type;
-//import java.util.ArrayList;
-//import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,13 +32,15 @@ public class ProductController {
 
 	@Autowired
 	private ProductJpaRepository productsJpa;
-	
+
 	final StorageService storageService;
 
 	@Autowired
 	public ProductController(StorageService storageService) {
 		this.storageService = storageService;
 	}
+
+//  ---------------------------------- GetMapping ----------------------------------
 
 	@GetMapping("/product")
 	public List<Product> showAllProducts() {
@@ -58,21 +57,28 @@ public class ProductController {
 		return product;
 	}
 
-	//Add ได้ เเต่ยังทำ Exception ไม่ได้
-	@PostMapping(value = "/addProduct")
-	public Product create(@RequestBody Product newProduct) {
-
-		/*
-		 * Product p = productJpa.FindProductByProductName(newProduct.getProductname());
-		 * if (p.getProductname().equals(newProduct.getProductname())) { throw new
-		 * ProductException(ExceptionResponse.ERROR_CODE.PRODUCT_NAME_ALREADY_EXIST,
-		 * "Product name : " + newProduct.getProductname() + " already exist "); }
-		 */
-
-		return productsJpa.save(newProduct);
-
+	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public Resource serveProduct(@PathVariable String filename) {
+		return storageService.loadAsResource(filename);
 	}
 
+//  ---------------------------------- PostMapping ----------------------------------
+
+	@PostMapping("/addProductWithImage")
+	public String createProduct(@RequestParam("product") String newProduct, @RequestParam("file") MultipartFile file) {
+		Product product = new Gson().fromJson(newProduct, Product.class);
+		productsJpa.save(product);
+		handleFileUpload(file);
+		return "Complete";
+	}
+
+	@PostMapping("/uploadImage")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+		storageService.store(file);
+		return file.getOriginalFilename() + "Upload complete";
+	}
+
+//  ---------------------------------- PutMapping ----------------------------------
 
 	// ยังไม่ได้ทำ throw Exception //ยังไม่ได้ test Update
 	@PutMapping("/product/{productid}")
@@ -82,26 +88,6 @@ public class ProductController {
 		}
 		productsJpa.findById(productid).orElse(null);
 		return productsJpa.save(updateProduct);
-	}
-	
-	@DeleteMapping("/product/{productid}")
-	public String deleteProduct(@PathVariable int productid) throws IOException {
-		Product product = productsJpa.findById(productid).orElse(null);
-		storageService.delete(product.getImage());
-		productsJpa.deleteById(productid);
-		return "Delete Post Number: " + productid + " complete.";
-	}
-	
-
-	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
-	public Resource serveProduct(@PathVariable String filename) {
-		return storageService.loadAsResource(filename);
-	}
-
-	@PostMapping("/uploadImage")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-		storageService.store(file);
-		return file.getOriginalFilename() + "Upload complete";
 	}
 
 	@PutMapping("/updateImage/{productcode}")
@@ -113,25 +99,27 @@ public class ProductController {
 		return "Update complete: Change " + oldImage + " to " + file.getOriginalFilename();
 	}
 
+//  ---------------------------------- DeleteMapping ----------------------------------
+
+	@DeleteMapping("/product/{productid}")
+	public String deleteProduct(@PathVariable int productid) throws IOException {
+		Product product = productsJpa.findById(productid).orElse(null);
+		storageService.delete(product.getImage());
+		productsJpa.deleteById(productid);
+		return "Delete Post Number: " + productid + " complete.";
+	}
+
 	@DeleteMapping(value = "/deleteFile/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public String deleteFile(@PathVariable String filename) throws IOException {
 		storageService.delete(filename);
 		return "Delete image filename: " + filename;
 	}
 
+//  ---------------------------------- ExceptionHandler ----------------------------------
+
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
-
-	@PostMapping("/addProductWithImage")
-	public String createProduct(@RequestParam("product") String newProduct, @RequestParam("file") MultipartFile file) {
-		Product product = new Gson().fromJson(newProduct, Product.class);
-		productsJpa.save(product);
-		handleFileUpload(file);
-		return "Complete";
-	}
-
-
 
 }

@@ -18,6 +18,8 @@ public class ShopController {
 	@Autowired
 	private ShopJpaRepository shopJpa;
 
+//  ---------------------------------- GetMapping ----------------------------------
+	
 	@GetMapping("/shop")
 	public List<Shop> showAllShops() {
 		return shopJpa.findAll();

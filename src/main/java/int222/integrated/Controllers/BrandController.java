@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import int222.integrated.Exception.ExceptionResponse;
 import int222.integrated.Exception.ProductException;
-import int222.integrated.Models.AuthenticationUser;
 import int222.integrated.Models.Brand;
-import int222.integrated.Models.Role;
 import int222.integrated.Repositories.BrandJpaRepository;
-import int222.integrated.Repositories.RoleJpaRepository;
-import int222.integrated.Repositories.UserJpaRepository;
+
 
 @CrossOrigin
 @RestController
@@ -25,25 +22,10 @@ public class BrandController {
 	@Autowired
 	private BrandJpaRepository brandJpa;
 	
-	@Autowired
-	private RoleJpaRepository RoleJpa;
-	
-	@Autowired
-	private UserJpaRepository UserJpa;
-
+//  ---------------------------------- GetMapping ----------------------------------
 	@GetMapping("/brand")
 	public List<Brand> showAllBrands() {
 		return brandJpa.findAll();
-	}
-	
-	@GetMapping("/role")
-	public List<Role> showRoles() {
-		return RoleJpa.findAll();
-	}
-	
-	@GetMapping("/user")
-	public List<AuthenticationUser> showAuthenticationUsers() {
-		return UserJpa.findAll();
 	}
 
 	@GetMapping("/brand/{brandid}")
@@ -55,12 +37,16 @@ public class BrandController {
 		}
 		return brand;
 	}
+	
+//  ---------------------------------- PostMapping ----------------------------------
 
 	@PostMapping(value = "/addbrand")
 	public Brand createBrand(@RequestBody Brand newBrand) {
 		return brandJpa.save(newBrand);
 	}
 
+//  ---------------------------------- DeleteMapping ----------------------------------
+	
 	@DeleteMapping("/brand/{brandid}")
 	public String delete(@PathVariable Integer brandid) {
 		Brand brand = this.brandJpa.findById(brandid).orElse(null);

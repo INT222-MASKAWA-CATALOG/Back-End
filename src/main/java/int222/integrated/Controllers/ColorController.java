@@ -20,6 +20,7 @@ import int222.integrated.Repositories.ColorJpaRepository;
 public class ColorController {
 	@Autowired
 	private ColorJpaRepository colorJpa;
+//  ---------------------------------- GetMapping ----------------------------------
 
 	@GetMapping("/color")
 	public List<Color> showAll() {
@@ -36,12 +37,15 @@ public class ColorController {
 
 		return color;
 	}
+	
+//  ---------------------------------- PostMapping ----------------------------------
 
 	@PostMapping(value = "/addcolor")
 	public Color createColor(@RequestBody Color newColor) {
 		return colorJpa.save(newColor);
 	}
-
+	
+//  ---------------------------------- DeleteMapping ----------------------------------
 	@DeleteMapping("/color/{colorid}")
 	public String delete(@PathVariable Integer colorid) {
 		Color color = this.colorJpa.findById(colorid).orElse(null);

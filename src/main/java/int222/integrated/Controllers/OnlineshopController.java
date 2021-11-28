@@ -23,7 +23,8 @@ import int222.integrated.Repositories.OnlineShopJpaRepository;
 public class OnlineshopController {
 	@Autowired
 	private OnlineShopJpaRepository onlineShopJpa;
-
+	
+//  ---------------------------------- GetMapping ----------------------------------
 	@GetMapping("/onlineshop")
 	public List<Onlineshop> showAllOnlineshops() {
 		return onlineShopJpa.findAll();
@@ -38,12 +39,16 @@ public class OnlineshopController {
 		}
 		return onlineshop;
 	}
-
+	
+//  ---------------------------------- PostMapping ----------------------------------
+	
 	@PostMapping(value = "/addonlineshop")
 	public Onlineshop create(@RequestBody Onlineshop newOnlineshop) {
 		return onlineShopJpa.save(newOnlineshop);
 	}
-
+	
+//  ---------------------------------- DeleteMapping ----------------------------------
+	
 	@DeleteMapping("/onlineshop/{onlineid}")
 	public String delete(@PathVariable Integer onlineid) {
 		Onlineshop onlineshop = this.onlineShopJpa.findById(onlineid).orElse(null);
