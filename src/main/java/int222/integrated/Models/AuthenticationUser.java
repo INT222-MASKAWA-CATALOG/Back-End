@@ -18,10 +18,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 @Entity(name = "user")
-public class AuthenticationUser  extends User implements Serializable 
-{
-
-	private static final long serialVersionUID = -7924450568553326886L;
+public class AuthenticationUser extends User implements Serializable {
 
 	public AuthenticationUser() {
 		super("anonymous", "", new ArrayList<>());
@@ -132,8 +129,5 @@ public class AuthenticationUser  extends User implements Serializable
 	public void setRecord(Set<Record> record) {
 		this.record = record;
 	}
-
-
-
 
 }

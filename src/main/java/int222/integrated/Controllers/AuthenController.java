@@ -1,20 +1,16 @@
 package int222.integrated.Controllers;
 
 import java.util.ArrayList;
-//import java.util.Collection;
-//import java.util.HashMap;
-//import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import int222.integrated.Models.AuthenticationUser;
@@ -49,13 +45,63 @@ public class AuthenController {
 		String tk = jwtTokenService.generateToken(userdetail, user.getRole().getName());
 		return new JwtResponse(tk);
 	}
-	
+
 	@GetMapping("/me")
-	public AuthenticationUser getMe(){
+	public AuthenticationUser getMe() {
 		String username = ServiceUtil.getUsername();
 		return userJpaRepository.findByUsername(username);
 	}
+
+//	@PostMapping(value = "/register")
+//	public ResponseEntity<?> saveUser(@RequestBody AuthenticationUser user) throws RuntimeException {
+//
+//		AuthenticationUser userNew = new AuthenticationUser(user.getUsername(),
+//				passwordEncoder.encode(user.getPassword()), user.getAuthorities());
+//		user.setPassword(passwordEncoder.encode(user.getPassword()));
+//		return ResponseEntity.ok(userJpaRepository.save(userNew));
+//
+//	}
 	
+	@PostMapping(value = "/register")
+	public String register(@RequestParam("password") String password, @RequestParam("username") String username,
+          @RequestParam("email") String email, @RequestParam("phone") String phone,
+          @RequestParam("gender") String gender) {
+		String encodedPassword = passwordEncoder.encode(password);
+		if(!checkUsername(username)) {
+			System.out.println("Pass checkUser username");
+			
+				AuthenticationUser newUsername = new AuthenticationUser();
+				newUsername.setPassword(encodedPassword);
+				newUsername.setUsername(username);
+				newUsername.setEmail(email);
+				newUsername.setPhone(phone);
+				newUsername.setGender(gender);
+				newUsername.setRoleid(1);
+				userJpaRepository.save(newUsername);
+				System.out.println("Register Complete.");
+				return "Register Complete.";
+			
+		} else {
+			System.out.println("This userID has already exit.");
+			return "This userID has already exit.";
+		}
+	}
+	
+	@GetMapping(value = "/checkUsername/{username}")
+	public boolean checkUsername(@PathVariable("username") String username) {
+		try {
+			if(userJpaRepository.findByUsername(username).getUsername().equals(username)) {
+				return false;
+			}else {
+				return true;
+			}
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+	
+
+
 
 
 }
