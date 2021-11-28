@@ -32,6 +32,8 @@ public class AuthenController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
+	public int numOfUser;
+
 	@PostMapping("/login")
 	public JwtResponse getlogin(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		AuthenticationUser user = userJpaRepository.findByUsername(authenticationRequest.getUsername());
@@ -52,56 +54,42 @@ public class AuthenController {
 		return userJpaRepository.findByUsername(username);
 	}
 
-//	@PostMapping(value = "/register")
-//	public ResponseEntity<?> saveUser(@RequestBody AuthenticationUser user) throws RuntimeException {
-//
-//		AuthenticationUser userNew = new AuthenticationUser(user.getUsername(),
-//				passwordEncoder.encode(user.getPassword()), user.getAuthorities());
-//		user.setPassword(passwordEncoder.encode(user.getPassword()));
-//		return ResponseEntity.ok(userJpaRepository.save(userNew));
-//
-//	}
-	
 	@PostMapping(value = "/register")
 	public String register(@RequestParam("password") String password, @RequestParam("username") String username,
-          @RequestParam("email") String email, @RequestParam("phone") String phone,
-          @RequestParam("gender") String gender) {
+			@RequestParam("email") String email, @RequestParam("phone") String phone,
+			@RequestParam("gender") String gender) {
 		String encodedPassword = passwordEncoder.encode(password);
-		if(!checkUsername(username)) {
+		if (!checkUsername(username)) {
 			System.out.println("Pass checkUser username");
-			
-				AuthenticationUser newUsername = new AuthenticationUser();
-				newUsername.setPassword(encodedPassword);
-				newUsername.setUsername(username);
-				newUsername.setEmail(email);
-				newUsername.setPhone(phone);
-				newUsername.setGender(gender);
-				newUsername.setRoleid(1);
-				userJpaRepository.save(newUsername);
-				System.out.println("Register Complete.");
-				return "Register Complete.";
-			
+
+			AuthenticationUser newUsername = new AuthenticationUser();
+			newUsername.setPassword(encodedPassword);
+			newUsername.setUsername(username);
+			newUsername.setEmail(email);
+			newUsername.setPhone(phone);
+			newUsername.setGender(gender);
+			newUsername.setRoleid(1);
+			userJpaRepository.save(newUsername);
+			System.out.println("Register Complete.");
+			return "Register Complete.";
+
 		} else {
 			System.out.println("This userID has already exit.");
 			return "This userID has already exit.";
 		}
 	}
-	
+
 	@GetMapping(value = "/checkUsername/{username}")
 	public boolean checkUsername(@PathVariable("username") String username) {
 		try {
-			if(userJpaRepository.findByUsername(username).getUsername().equals(username)) {
+			if (userJpaRepository.findByUsername(username).getUsername().equals(username)) {
 				return false;
-			}else {
+			} else {
 				return true;
 			}
 		} catch (Exception ex) {
 			return false;
 		}
 	}
-	
-
-
-
 
 }

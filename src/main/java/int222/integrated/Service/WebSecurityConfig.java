@@ -71,8 +71,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 					config.configurationSource(source);
 			}).csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.authorizeRequests().antMatchers("/login","/brand","/color","/Files/**","/product","/register").permitAll().antMatchers("/me")
-				.hasAnyAuthority("ROLE_USER")
+				.authorizeRequests().antMatchers("/login","/brand","/color","/Files/**","/product","/register","/product/**").permitAll().antMatchers("/me")
+				.hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 				.antMatchers("/managesys").hasAnyAuthority("ROLE_ADMIN")
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated();
 
