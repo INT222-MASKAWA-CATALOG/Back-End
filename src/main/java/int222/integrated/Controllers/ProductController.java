@@ -2,7 +2,6 @@ package int222.integrated.Controllers;
 
 import java.util.List;
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,9 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.google.gson.Gson;
-
 import int222.integrated.Models.Product;
 import int222.integrated.Repositories.ProductJpaRepository;
 import int222.integrated.Service.StorageService;
@@ -41,12 +38,13 @@ public class ProductController {
 	}
 
 //  ---------------------------------- GetMapping ----------------------------------
-
+	// Show a list of all products.
 	@GetMapping("/product")
 	public List<Product> showAllProducts() {
 		return productsJpa.findAll();
 	}
 
+	// Show list of product by productid
 	@GetMapping("/product/{productid}")
 	public Product showProduct(@PathVariable int productid) {
 		Product product = this.productsJpa.findById(productid).orElse(null);
@@ -57,13 +55,14 @@ public class ProductController {
 		return product;
 	}
 
+	// browse images files
 	@GetMapping(value = "/Files/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public Resource serveProduct(@PathVariable String filename) {
 		return storageService.loadAsResource(filename);
 	}
 
 //  ---------------------------------- PostMapping ----------------------------------
-
+	// add product with add image
 	@PostMapping("/addProductWithImage")
 	public String createProduct(@RequestParam("product") String newProduct, @RequestParam("file") MultipartFile file) {
 		Product product = new Gson().fromJson(newProduct, Product.class);
@@ -72,6 +71,7 @@ public class ProductController {
 		return "Complete";
 	}
 
+	// add a image
 	@PostMapping("/uploadImage")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 		storageService.store(file);
@@ -79,8 +79,7 @@ public class ProductController {
 	}
 
 //  ---------------------------------- PutMapping ----------------------------------
-
-	// ยังไม่ได้ทำ throw Exception //ยังไม่ได้ test Update
+	// edit product information
 	@PutMapping("/product/{productid}")
 	public Product updateProduct(@RequestBody Product updateProduct, @PathVariable int productid) throws Exception {
 		if (productsJpa.findById(productid).orElse(null) == null) {
@@ -90,17 +89,21 @@ public class ProductController {
 		return productsJpa.save(updateProduct);
 	}
 
+	// Update image according to the productid.
 	@PutMapping("/updateImage/{productcode}")
 	public String handleFileUpdate(@PathVariable int productcode, @RequestParam("file") MultipartFile file)
-			throws IOException {
+			throws Exception {
 		String oldImage = productsJpa.findById(productcode).get().getImage();
 		storageService.delete(productsJpa.findById(productcode).get().getImage());
 		storageService.store(file);
 		return "Update complete: Change " + oldImage + " to " + file.getOriginalFilename();
 	}
 
-//  ---------------------------------- DeleteMapping ----------------------------------
+	// Edit product information with image
+	//*****************************************************************
 
+//  ---------------------------------- DeleteMapping ----------------------------------
+	// Delete products by productid
 	@DeleteMapping("/product/{productid}")
 	public String deleteProduct(@PathVariable int productid) throws IOException {
 		Product product = productsJpa.findById(productid).orElse(null);
@@ -109,6 +112,7 @@ public class ProductController {
 		return "Delete Post Number: " + productid + " complete.";
 	}
 
+	// delete photo
 	@DeleteMapping(value = "/deleteFile/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public String deleteFile(@PathVariable String filename) throws IOException {
 		storageService.delete(filename);
@@ -116,10 +120,8 @@ public class ProductController {
 	}
 
 //  ---------------------------------- ExceptionHandler ----------------------------------
-
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
-
 }

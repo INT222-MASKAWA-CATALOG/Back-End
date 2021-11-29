@@ -1,13 +1,11 @@
 package int222.integrated.Service;
 
 import java.io.IOException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,7 +50,5 @@ public class JwtRequestFilter extends GenericFilterBean {
 			}
 		}
 		chain.doFilter(request, response);
-
 	}
-
 }

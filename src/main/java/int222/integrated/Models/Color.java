@@ -55,5 +55,4 @@ public class Color {
 	public void setColorname(String colorname) {
 		this.colorname = colorname;
 	}
-
 }

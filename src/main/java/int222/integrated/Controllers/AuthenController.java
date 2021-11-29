@@ -1,12 +1,13 @@
 package int222.integrated.Controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import int222.integrated.Models.AuthenticationUser;
 import int222.integrated.Models.JwtRequest;
 import int222.integrated.Models.JwtResponse;
@@ -43,22 +43,26 @@ public class AuthenController {
 	private UserJpaRepository UserJpa;
 
 //  ---------------------------------- GetMapping ----------------------------------
+	// View data from user tokens.
 	@GetMapping("/me")
 	public AuthenticationUser getMe() {
 		String username = ServiceUtil.getUsername();
 		return userJpaRepository.findByUsername(username);
 	}
 
+	// View all roles in the system.
 	@GetMapping("/role")
 	public List<Role> showRoles() {
 		return RoleJpa.findAll();
 	}
 
-	@GetMapping("/user")
+	// List all user data out with token.
+	@GetMapping("/alluser")
 	public List<AuthenticationUser> showAuthenticationUsers() {
 		return UserJpa.findAll();
 	}
-	
+
+	// Checking username duplicates before registering.
 	@GetMapping(value = "/checkUsername/{username}")
 	public boolean checkUsername(@PathVariable("username") String username) {
 		try {
@@ -75,7 +79,7 @@ public class AuthenController {
 	}
 
 //  ---------------------------------- PostMapping ----------------------------------
-	
+	// log in
 	@PostMapping("/login")
 	public JwtResponse getlogin(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		AuthenticationUser user = userJpaRepository.findByUsername(authenticationRequest.getUsername());
@@ -90,6 +94,7 @@ public class AuthenController {
 		return new JwtResponse(tk);
 	}
 
+	// register
 	@PostMapping(value = "/register")
 	public String register(@RequestParam("password") String password, @RequestParam("username") String username,
 			@RequestParam("email") String email, @RequestParam("phone") String phone,
@@ -118,6 +123,7 @@ public class AuthenController {
 		}
 	}
 
+	// Checking email duplicates before registering.
 	public boolean checkEmail(String email) {
 		try {
 			if (userJpaRepository.findByEmail(email).getEmail().equals(email)) {
@@ -129,18 +135,35 @@ public class AuthenController {
 			return false;
 		}
 	}
-	
+
 //  ---------------------------------- PutMapping ----------------------------------
-	
+	// update role
 	@PutMapping(value = "/updateRole")
-	public AuthenticationUser updateRole(@RequestParam("userid") int userid,@RequestParam("roleid") int roleid) {
-		AuthenticationUser updateRoleId =  userJpaRepository.findById(userid).get();
+	public AuthenticationUser updateRole(@RequestParam("userid") int userid, @RequestParam("roleid") int roleid) {
+		AuthenticationUser updateRoleId = userJpaRepository.findById(userid).get();
 		updateRoleId.setRoleid(roleid);
 		System.out.println("Update Role Id Complete.");
 		return userJpaRepository.save(updateRoleId);
 	}
-	
 
-
-
+	//update profile
+	@PutMapping(value = "/editProfile")
+	public AuthenticationUser updateRole(@RequestBody AuthenticationUser newProfile) {
+		AuthenticationUser updateProfile = userJpaRepository.findById(newProfile.getUserid()).orElse(null);
+		if (updateProfile != null) {
+			updateProfile.setEmail(newProfile.getEmail());
+			updateProfile.setPhone(newProfile.getPhone());
+			updateProfile.setGender(newProfile.getGender());
+			userJpaRepository.save(updateProfile);
+		}
+		return updateProfile;
+	}
+//  ---------------------------------- DeleteMapping ----------------------------------
+	// delete user by userid
+	@DeleteMapping(value = "/user/{userid}")
+	public String deleteUser(@PathVariable int userid) throws IOException {
+		AuthenticationUser user = userJpaRepository.findById(userid).orElse(null);
+		userJpaRepository.deleteById(userid);
+		return "Delete user id " + userid + " complete.";
+	}
 }

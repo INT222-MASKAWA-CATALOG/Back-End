@@ -59,5 +59,4 @@ public class Record {
 	public void setProductid(int productid) {
 		this.productid = productid;
 	}
-
 }

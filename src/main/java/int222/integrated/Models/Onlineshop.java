@@ -50,13 +50,9 @@ public class Onlineshop {
 		return productlink;
 	}
 
-	public String getShopname() {
-		return shop.getShopname();
-	}
-
-	public String getLogo() {
-		return shop.getLogo();
-	}
+	public Shop getShop() {
+        return shop;
+    }
 
 //	Setter
 	public void setOnlineid(int onlineid) {
@@ -78,5 +74,4 @@ public class Onlineshop {
 	public void setShopid(String shopid) {
 		this.shopid = shopid;
 	}
-
 }

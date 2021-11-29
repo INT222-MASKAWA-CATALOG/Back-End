@@ -53,5 +53,4 @@ public class Brand {
 	public void setBrandlink(String brandlink) {
 		this.brandlink = brandlink;
 	}
-
 }

@@ -1,7 +1,6 @@
 package int222.integrated.Models;
 
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,5 +54,4 @@ public class Shop {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-
 }
