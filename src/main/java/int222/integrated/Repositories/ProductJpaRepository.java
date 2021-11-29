@@ -6,7 +6,4 @@ import org.springframework.data.jpa.repository.Query;
 import int222.integrated.Models.Product;
 
 public interface ProductJpaRepository extends JpaRepository<Product, Integer> {
-	
-	@Query("select productname from Product")
-	Product FindProductByProductName(String Productname);
 }

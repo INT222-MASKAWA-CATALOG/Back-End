@@ -1,9 +1,9 @@
 package int222.integrated.Exception;
 
-public class UserNameException extends RuntimeException {
+public class MessageException extends RuntimeException {
 	ExceptionResponse.ERROR_CODE errorCode;
 
-	public UserNameException(ExceptionResponse.ERROR_CODE errorCode, String message) {
+	public MessageException(ExceptionResponse.ERROR_CODE errorCode, String message) {
 		super(message);
 		this.errorCode = errorCode;
 	}

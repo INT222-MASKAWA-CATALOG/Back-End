@@ -1,5 +1,7 @@
 package int222.integrated.Models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,6 +58,15 @@ public class Record {
 		this.productid = productid;
 	}
 
+	/*public Product getProduct() {
+		return product;
+	}*/
+
+	
+	
+	
+	
+	
 	
 	
 }
