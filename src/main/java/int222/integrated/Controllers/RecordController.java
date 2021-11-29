@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import int222.integrated.Exception.ExceptionResponse;
-import int222.integrated.Exception.MessageException;
-import int222.integrated.Exception.ProductException;
 import int222.integrated.Models.AuthenticationUser;
-import int222.integrated.Models.Product;
 import int222.integrated.Models.Record;
 import int222.integrated.Repositories.RecordJpaRepository;
 import int222.integrated.Repositories.UserJpaRepository;
-import int222.integrated.Service.ServiceUtil;
 
 @CrossOrigin
 @RestController

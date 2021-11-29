@@ -21,40 +21,39 @@ public class Color {
 
 	@Column(name = "colorname")
 	private String colorname;
-	
+
 	@Column(name = "hexcode")
 	private String hexcode;
-	
+
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 
+//	Getter
+	
 	public int getColorid() {
 		return colorid;
-	}
-
-	public void setColorid(int colorid) {
-		this.colorid = colorid;
 	}
 
 	public String getHexcode() {
 		return hexcode;
 	}
 
-	public void setHexcode(String hexcode) {
-		this.hexcode = hexcode;
-	}
-
 	public String getColorname() {
 		return colorname;
+	}
+
+//	Setter
+	
+	public void setColorid(int colorid) {
+		this.colorid = colorid;
+	}
+
+	public void setHexcode(String hexcode) {
+		this.hexcode = hexcode;
 	}
 
 	public void setColorname(String colorname) {
 		this.colorname = colorname;
 	}
-
-
-	
-
-	
 
 }

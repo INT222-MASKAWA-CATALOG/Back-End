@@ -24,34 +24,34 @@ public class Brand {
 
 	@Column(name = "brandlink")
 	private String brandlink;
-	
+
 	@OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Product> product;
 
+//	Getter
 	public int getBrandid() {
 		return brandid;
-	}
-
-	public void setBrandid(int brandid) {
-		this.brandid = brandid;
 	}
 
 	public String getBrandname() {
 		return brandname;
 	}
 
-	public void setBrandname(String brandname) {
-		this.brandname = brandname;
-	}
-
 	public String getBrandlink() {
 		return brandlink;
+	}
+
+//	Setter
+	public void setBrandid(int brandid) {
+		this.brandid = brandid;
+	}
+
+	public void setBrandname(String brandname) {
+		this.brandname = brandname;
 	}
 
 	public void setBrandlink(String brandlink) {
 		this.brandlink = brandlink;
 	}
 
-	
-	
 }

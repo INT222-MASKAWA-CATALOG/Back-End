@@ -24,33 +24,36 @@ public class Shop {
 
 	@Column(name = "logo")
 	private String logo;
-	
+
 	@OneToMany(mappedBy = "shop", cascade = CascadeType.ALL, orphanRemoval = true)
 	Set<Onlineshop> onlineshop;
 
+//	Getter
+
 	public int getShopid() {
 		return shopid;
-	}
-
-	public void setShopid(int shopid) {
-		this.shopid = shopid;
-	}
-
-	public String getShopname() {
-		return shopname;
-	}
-
-	public void setShopname(String shopname) {
-		this.shopname = shopname;
 	}
 
 	public String getLogo() {
 		return logo;
 	}
 
+	public String getShopname() {
+		return shopname;
+	}
+
+//	Setter
+
+	public void setShopid(int shopid) {
+		this.shopid = shopid;
+	}
+
+	public void setShopname(String shopname) {
+		this.shopname = shopname;
+	}
+
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	
-	
+
 }

@@ -22,12 +22,9 @@ public class Role {
 	@Column(name = "name")
 	private String name;
 
+//	Getter
 	public String getName() {
 		return name;
 	}
-	
-
-
-
 
 }
