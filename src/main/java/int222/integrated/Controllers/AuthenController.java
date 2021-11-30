@@ -39,15 +39,15 @@ public class AuthenController {
 	@Autowired
 	private RoleJpaRepository RoleJpa;
 
-	@Autowired
-	private UserJpaRepository UserJpa;
+	// @Autowired
+	// private UserJpaRepository UserJpa;
 
 //  ---------------------------------- GetMapping ----------------------------------
 	// View data from user tokens.
 	@GetMapping("/me")
 	public AuthenticationUser getMe() {
 		String username = ServiceUtil.getUsername();
-		return userJpaRepository.findByUsername(username);
+		return userJpaRepository.findByUsernames(username);
 	}
 
 	// View all roles in the system.
@@ -59,15 +59,15 @@ public class AuthenController {
 	// List all user data out with token.
 	@GetMapping("/alluser")
 	public List<AuthenticationUser> showAuthenticationUsers() {
-		return UserJpa.findAll();
+		return userJpaRepository.findAll();
 	}
 
 	// Checking username duplicates before registering.
 	@GetMapping(value = "/checkUsername/{username}")
 	public boolean checkUsername(@PathVariable("username") String username) {
 		try {
-			if (userJpaRepository.findByUsername(username).getUsername().equals(username)) {
-				System.out.println(userJpaRepository.findByUsername(username).getUsername());
+			if (userJpaRepository.findByUsernames(username).getUsername().equals(username)) {
+				System.out.println(userJpaRepository.findByUsernames(username).getUsername());
 				return true;
 			} else {
 				return false;
@@ -82,7 +82,7 @@ public class AuthenController {
 	// log in
 	@PostMapping("/login")
 	public JwtResponse getlogin(@RequestBody JwtRequest authenticationRequest) throws Exception {
-		AuthenticationUser user = userJpaRepository.findByUsername(authenticationRequest.getUsername());
+		AuthenticationUser user = userJpaRepository.findByUsernames(authenticationRequest.getUsername());
 		if (user == null) {
 			throw new Exception();
 		}
@@ -162,7 +162,7 @@ public class AuthenController {
 	// delete user by userid
 	@DeleteMapping(value = "/user/{userid}")
 	public String deleteUser(@PathVariable int userid) throws IOException {
-		AuthenticationUser user = userJpaRepository.findById(userid).orElse(null);
+		// AuthenticationUser user = userJpaRepository.findById(userid).orElse(null);
 		userJpaRepository.deleteById(userid);
 		return "Delete user id " + userid + " complete.";
 	}

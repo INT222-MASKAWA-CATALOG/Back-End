@@ -99,8 +99,17 @@ public class ProductController {
 		return "Update complete: Change " + oldImage + " to " + file.getOriginalFilename();
 	}
 
-	// Edit product information with image
-	//*****************************************************************
+	// Edit product information with image [Not Finish]
+	@PutMapping("/updateProductWithImage/{productid}")
+	public String updateProduct(@PathVariable int productid, @RequestParam("product") String updateProduct, @RequestParam("file") MultipartFile file) throws Exception {
+		Product editDataProduct = new Gson().fromJson(updateProduct, Product.class);
+		Product product = productsJpa.findById(productid).orElse(null);
+		storageService.delete(product.getImage());
+		product.setAll(editDataProduct);
+		productsJpa.save(product);
+		storageService.store(file);
+		return "Update Success";
+	}
 
 //  ---------------------------------- DeleteMapping ----------------------------------
 	// Delete products by productid

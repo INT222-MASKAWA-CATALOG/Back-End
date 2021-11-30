@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import int222.integrated.Exception.ExceptionResponse;
 import int222.integrated.Exception.ProductException;
-import int222.integrated.Models.Brand;
 import int222.integrated.Models.Color;
 import int222.integrated.Repositories.ColorJpaRepository;
 

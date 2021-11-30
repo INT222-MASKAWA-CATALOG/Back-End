@@ -33,10 +33,10 @@ public class AuthenticationUser extends User implements Serializable {
 	private int userid;
 
 	@Column(name = "password")
-	private String password;
+	private String pass;
 
 	@Column(name = "username")
-	private String username;
+	private String usernames;
 
 	@Column(name = "email")
 	private String email;
@@ -64,11 +64,11 @@ public class AuthenticationUser extends User implements Serializable {
 	}
 
 	public String getPassword() {
-		return password;
+		return pass;
 	}
 
 	public String getUsername() {
-		return username;
+		return usernames;
 	}
 
 	public String getEmail() {
@@ -101,12 +101,12 @@ public class AuthenticationUser extends User implements Serializable {
 		this.userid = userid;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String pass) {
+		this.pass = pass;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.usernames = username;
 	}
 
 	public void setEmail(String email) {

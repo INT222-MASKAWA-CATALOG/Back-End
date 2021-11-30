@@ -121,4 +121,13 @@ public class Product {
 	public void setColorid(int colorid) {
 		this.colorid = colorid;
 	}
+
+  public void setAll(Product editDataProduct) {
+		this.setProductname(editDataProduct.productname);
+		this.setSaledate(editDataProduct.saledate);
+		this.setDescription(editDataProduct.description);
+		this.setImage(editDataProduct.image);
+		this.setBrandid(editDataProduct.brandid);
+		this.setColorid(editDataProduct.colorid);
+  }
 }
