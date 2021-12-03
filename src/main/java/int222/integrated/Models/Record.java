@@ -45,6 +45,10 @@ public class Record {
 	public int getUserid() {
 		return userid;
 	}
+	
+	public Product getProduct() {
+		return product;
+	}
 
 //	Setter
 

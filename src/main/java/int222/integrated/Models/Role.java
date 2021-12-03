@@ -22,6 +22,10 @@ public class Role {
 	private String name;
 
 //	Getter
+	public int getRoleid() {
+		return roleid;
+	}
+
 	public String getName() {
 		return name;
 	}

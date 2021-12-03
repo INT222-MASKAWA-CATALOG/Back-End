@@ -67,38 +67,11 @@ public class ProductController {
 	public String createProduct(@RequestParam("product") String newProduct, @RequestParam("file") MultipartFile file) {
 		Product product = new Gson().fromJson(newProduct, Product.class);
 		productsJpa.save(product);
-		handleFileUpload(file);
+		storageService.store(file);
 		return "Complete";
 	}
 
-	// add a image
-	@PostMapping("/uploadImage")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-		storageService.store(file);
-		return file.getOriginalFilename() + "Upload complete";
-	}
-
 //  ---------------------------------- PutMapping ----------------------------------
-	// edit product information
-	@PutMapping("/product/{productid}")
-	public Product updateProduct(@RequestBody Product updateProduct, @PathVariable int productid) throws Exception {
-		if (productsJpa.findById(productid).orElse(null) == null) {
-			throw new Exception("Not Found Product");
-		}
-		productsJpa.findById(productid).orElse(null);
-		return productsJpa.save(updateProduct);
-	}
-
-	// Update image according to the productid.
-	@PutMapping("/updateImage/{productcode}")
-	public String handleFileUpdate(@PathVariable int productcode, @RequestParam("file") MultipartFile file)
-			throws Exception {
-		String oldImage = productsJpa.findById(productcode).get().getImage();
-		storageService.delete(productsJpa.findById(productcode).get().getImage());
-		storageService.store(file);
-		return "Update complete: Change " + oldImage + " to " + file.getOriginalFilename();
-	}
-
 	// Edit product information with image [Not Finish]
 	@PutMapping("/updateProductWithImage/{productid}")
 	public String updateProduct(@PathVariable int productid, @RequestParam("product") String updateProduct, @RequestParam("file") MultipartFile file) throws Exception {
@@ -119,13 +92,6 @@ public class ProductController {
 		storageService.delete(product.getImage());
 		productsJpa.deleteById(productid);
 		return "Delete Post Number: " + productid + " complete.";
-	}
-
-	// delete photo
-	@DeleteMapping(value = "/deleteFile/{filename:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
-	public String deleteFile(@PathVariable String filename) throws IOException {
-		storageService.delete(filename);
-		return "Delete image filename: " + filename;
 	}
 
 //  ---------------------------------- ExceptionHandler ----------------------------------

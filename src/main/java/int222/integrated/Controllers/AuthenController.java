@@ -57,7 +57,7 @@ public class AuthenController {
 	}
 
 	// List all user data out with token.
-	@GetMapping("/alluser")
+	@GetMapping("/user")
 	public List<AuthenticationUser> showAuthenticationUsers() {
 		return userJpaRepository.findAll();
 	}
@@ -140,7 +140,7 @@ public class AuthenController {
 	// update role
 	@PutMapping(value = "/updateRole")
 	public AuthenticationUser updateRole(@RequestParam("userid") int userid, @RequestParam("roleid") int roleid) {
-		AuthenticationUser updateRoleId = userJpaRepository.findById(userid).get();
+		AuthenticationUser updateRoleId = userJpaRepository.findById(userid).orElse(null);
 		updateRoleId.setRoleid(roleid);
 		System.out.println("Update Role Id Complete.");
 		return userJpaRepository.save(updateRoleId);
